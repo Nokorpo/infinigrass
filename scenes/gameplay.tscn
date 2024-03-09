@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbw0iwo3tewe8"]
+[gd_scene load_steps=6 format=3 uid="uid://cbw0iwo3tewe8"]
 
 [ext_resource type="Script" path="res://scenes/resources_manager.gd" id="1_3x6r4"]
 [ext_resource type="Script" path="res://scenes/grass/grass_spawner.gd" id="1_i14n6"]
 [ext_resource type="Script" path="res://scenes/upgrades_manager.gd" id="2_fwc41"]
+[ext_resource type="Texture2D" uid="uid://uod7vfj75ubd" path="res://assets/sprites/cesped.png" id="4_1d2mf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v423"]
 bg_color = Color(0.160784, 0.27451, 0.345098, 1)
@@ -16,6 +17,10 @@ script = ExtResource("1_3x6r4")
 [node name="UpgradesManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_fwc41")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(400, 400)
+texture = ExtResource("4_1d2mf")
 
 [node name="GrassSpawner" type="Node2D" parent="."]
 script = ExtResource("1_i14n6")
@@ -40,9 +45,9 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 480.0
+offset_top = 670.0
 offset_right = 800.0
-offset_bottom = 600.0
+offset_bottom = 800.0
 grow_horizontal = 2
 grow_vertical = 2
 

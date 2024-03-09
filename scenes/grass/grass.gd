@@ -7,7 +7,7 @@ var is_pulling := false
 var pulled_distance := 0.0
 var mouse_position_last_frame: Vector2
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("click"):
 		var mouse_positon = get_viewport().get_mouse_position()
 		const PULL_MARGIN = 80
@@ -22,7 +22,7 @@ func _input(event):
 		scale.y = 1
 		scale.x = 1
 
-func _process(delta):
+func _process(_delta):
 	if is_pulling:
 		var mouse_position := get_viewport().get_mouse_position()
 		var distance_this_frame: Vector2 = mouse_position_last_frame - mouse_position

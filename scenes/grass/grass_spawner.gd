@@ -14,7 +14,7 @@ func spawn_grass():
 	var this_grass = GRASS.instantiate()
 	this_grass.pulled.connect(grass_pulled)
 	this_grass.target_pull_distance = %UpgradesManager.get_current_pruner().target_pull_distance
-	this_grass.position = Vector2(randf_range(50, 750), randf_range(50,450))
+	this_grass.position = Vector2(randf_range(50, 750), randf_range(50,630))
 	$Grasses.add_child(this_grass)
 
 func grass_pulled():

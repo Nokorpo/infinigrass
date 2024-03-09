@@ -1,6 +1,8 @@
 extends Sprite2D
 
-const TARGET_PULL_DISTANCE = 200
+signal pulled
+
+const TARGET_PULL_DISTANCE = 2400
 
 var is_pulling := false
 var pulled_distance := 0.0
@@ -8,9 +10,12 @@ var mouse_position_last_frame: Vector2
 
 func _input(event):
 	if Input.is_action_just_pressed("click"):
-		is_pulling = true
-		pulled_distance = 0.0
-		mouse_position_last_frame = get_viewport().get_mouse_position()
+		var mouse_positon = get_viewport().get_mouse_position()
+		const PULL_MARGIN = 80
+		if (mouse_positon - position).length() < PULL_MARGIN:
+			is_pulling = true
+			pulled_distance = 0.0
+			mouse_position_last_frame = mouse_positon
 	elif Input.is_action_just_released("click"):
 		is_pulling = false
 		modulate.r = 1
@@ -32,4 +37,7 @@ func _process(delta):
 		scale.y = clamp(.5 + distance_to_mouse.length() / 200, .5, 2)
 		scale.x = clamp(1 - distance_to_mouse.length() / 500, .2, 3)
 		
-		modulate.r = pulled_distance / 2000
+		modulate.r = pulled_distance / 1000
+		if pulled_distance > TARGET_PULL_DISTANCE:
+			pulled.emit()
+			queue_free()

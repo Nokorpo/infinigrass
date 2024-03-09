@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbw0iwo3tewe8"]
+
+[ext_resource type="Texture2D" uid="uid://qapm100j3ec5" path="res://assets/sprites/grass.png" id="1_kjcbp"]
+
+[node name="Gameplay" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(402, 342)
+texture = ExtResource("1_kjcbp")

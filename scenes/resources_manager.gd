@@ -1,5 +1,7 @@
 extends Node
-class_name resourcesManager
+class_name ResourcesManager
+
+enum GameResourceType { MONEY, BARLEY, BEER }
 
 var money: int = 0
 

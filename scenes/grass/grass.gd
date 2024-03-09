@@ -26,10 +26,10 @@ func _process(delta):
 		mouse_position_last_frame = mouse_position
 		
 		var horizontal_distance_to_mouse := mouse_position.x - position.x
-		rotation = horizontal_distance_to_mouse / 400
+		rotation = clamp(horizontal_distance_to_mouse / 400, -1.3, 1.3)
 		
 		var distance_to_mouse :=  mouse_position - position
-		scale.y = .5 + distance_to_mouse.length() / 200
-		scale.x = 1 - distance_to_mouse.length() / 500
+		scale.y = clamp(.5 + distance_to_mouse.length() / 200, .5, 2)
+		scale.x = clamp(1 - distance_to_mouse.length() / 500, .2, 3)
 		
 		modulate.r = pulled_distance / 2000

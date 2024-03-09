@@ -2,8 +2,7 @@ extends Sprite2D
 
 signal pulled
 
-const TARGET_PULL_DISTANCE = 2400
-
+var target_pull_distance = 2400
 var is_pulling := false
 var pulled_distance := 0.0
 var mouse_position_last_frame: Vector2
@@ -37,7 +36,7 @@ func _process(delta):
 		scale.y = clamp(.5 + distance_to_mouse.length() / 200, .5, 2)
 		scale.x = clamp(1 - distance_to_mouse.length() / 500, .2, 3)
 		
-		modulate.r = pulled_distance / 1000
-		if pulled_distance > TARGET_PULL_DISTANCE:
+		modulate.r = pulled_distance / target_pull_distance * 2
+		if pulled_distance > target_pull_distance:
 			pulled.emit()
 			queue_free()

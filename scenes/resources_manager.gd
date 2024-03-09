@@ -1,5 +1,5 @@
 extends Node
-class_name resources_manager2
+class_name resourcesManager
 
 var money: int = 0
 

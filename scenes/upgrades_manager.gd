@@ -23,10 +23,10 @@ const PRUNER_DATA: Dictionary = {
 
 func upgrade_pruner():
 	if pruner_level + 1 < PRUNER_DATA.size() and \
-		%ResourcesManager.money >= PRUNER_DATA[pruner_level + 1].upgrade_cost:
+		ResourcesManager.money >= PRUNER_DATA[pruner_level + 1].upgrade_cost:
 		var cost = PRUNER_DATA[pruner_level + 1].upgrade_cost
 		pruner_level += 1
-		%ResourcesManager.add_money(-cost)
+		ResourcesManager.subtract_resource(cost, ResourcesManager.GameResourceType.MONEY)
 		$"../BottomPanel/HBoxContainer/PrunerButton".text = "Pruner " + str(pruner_level + 1)
 		
 		for sibling in $"../GrassSpawner/Grasses".get_children():

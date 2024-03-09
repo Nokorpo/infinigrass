@@ -1,18 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://cbw0iwo3tewe8"]
 
-[ext_resource type="Script" path="res://scenes/resources_manager.gd" id="1_3x6r4"]
 [ext_resource type="Script" path="res://scenes/grass/grass_spawner.gd" id="1_i14n6"]
 [ext_resource type="Script" path="res://scenes/upgrades_manager.gd" id="2_fwc41"]
-[ext_resource type="Texture2D" uid="uid://uod7vfj75ubd" path="res://assets/sprites/cesped.png" id="4_1d2mf"]
+[ext_resource type="Texture2D" uid="uid://me7fh26novvq" path="res://assets/sprites/cesped.png" id="4_1d2mf"]
+[ext_resource type="Script" path="res://scenes/ui/Coins.gd" id="4_327l3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v423"]
 bg_color = Color(0.160784, 0.27451, 0.345098, 1)
 
 [node name="Gameplay" type="Node2D"]
-
-[node name="ResourcesManager" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("1_3x6r4")
 
 [node name="UpgradesManager" type="Node" parent="."]
 unique_name_in_owner = true
@@ -39,6 +35,7 @@ offset_right = 59.0
 offset_bottom = 92.0
 theme_override_font_sizes/font_size = 64
 text = "0"
+script = ExtResource("4_327l3")
 
 [node name="BottomPanel" type="Control" parent="."]
 layout_mode = 3

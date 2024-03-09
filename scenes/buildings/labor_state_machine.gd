@@ -22,12 +22,12 @@ func _input(event: InputEvent) -> void:
 	if is_left_click(event) and is_mouse_inside():
 		match state:
 			LaborStates.IDLE:
-				print("Subtract %d units of %s" % [recharge_amount, ResourcesManager.GameResourceType.keys()[recharge_resource]])
+				ResourcesManager.add_resource(recharge_amount, recharge_resource)
 				$Timer.start(time_until_done)
 				$Sprite2D.texture = sprite_on_working
 				get_viewport().set_input_as_handled()
 			LaborStates.DONE:
-				print("Produce %d units of %s" % [amount, ResourcesManager.GameResourceType.keys()[resource]])
+				ResourcesManager.add_resource(amount, resource)
 				state = LaborStates.IDLE
 				$Sprite2D.texture = sprite_on_idle
 				get_viewport().set_input_as_handled()

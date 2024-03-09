@@ -17,11 +17,10 @@ func _ready() -> void:
 func _on_timer_timeout() -> void:
 	$Sprite2D.texture = sprite_on_completed
 	finished = true
-	print("ready como una lechuga")
 
 func _input(event: InputEvent) -> void:
 	if finished and is_left_click(event) and is_mouse_inside():
-		print("Produce %d units of %s" % [amount, ResourcesManager.GameResourceType.keys()[resource]])
+		ResourcesManager.add_resource(amount, resource)
 		get_viewport().set_input_as_handled()
 		queue_free()
 

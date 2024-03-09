@@ -9,4 +9,4 @@ func _ready() -> void:
 	$Timer.start(time_until_completion)
 
 func _on_timer_timeout() -> void:
-	print("Produce %d units of %s" % [amount, ResourcesManager.GameResourceType.keys()[resource]])
+	ResourcesManager.add_resource(amount, resource)

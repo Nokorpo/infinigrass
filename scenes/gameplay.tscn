@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://gxgdcui82uyj" path="res://assets/sprites/ui/button-2-disabled.png" id="11_mtd0x"]
 [ext_resource type="Texture2D" uid="uid://bioe7rjfqqiq6" path="res://assets/sprites/ui/laborer.png" id="12_r4wol"]
 [ext_resource type="Script" path="res://scenes/ui/buy_upgrade_button.gd" id="13_q4axp"]
-[ext_resource type="Texture2D" uid="uid://5xpid2ufy6d0" path="res://assets/sprites/ui/poop.png" id="13_rsyjd"]
+[ext_resource type="Texture2D" uid="uid://5xpid2ufy6d0" path="res://assets/sprites/ui/poop-1.png" id="13_rsyjd"]
 [ext_resource type="Texture2D" uid="uid://da8ncd03n4l27" path="res://assets/sprites/ui/tooltip-side.svg" id="15_wlhpw"]
 
 [sub_resource type="Theme" id="Theme_l8mw1"]
@@ -198,6 +198,7 @@ theme_override_font_sizes/font_size = 22
 text = "Podadora"
 
 [node name="Label2" type="Label" parent="BottomPanel/Buttons/PrunerButton/Tooltip"]
+layout_mode = 0
 offset_left = 15.0
 offset_top = 56.0
 offset_right = 237.0
@@ -282,22 +283,63 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("12_r4wol")
 
 [node name="FertilizerButton" type="Button" parent="BottomPanel/Buttons"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(103, 136)
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_7uaaf")
 icon_alignment = 1
+script = ExtResource("13_q4axp")
+upgrade_type = 1
 
 [node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/FertilizerButton"]
 layout_mode = 0
-offset_left = 18.0
-offset_top = 59.0
-offset_right = 82.0
-offset_bottom = 116.0
+offset_left = -1.0
+offset_top = 42.0
+offset_right = 102.0
+offset_bottom = 115.0
 texture = ExtResource("13_rsyjd")
+
+[node name="Tooltip" type="TextureRect" parent="BottomPanel/Buttons/FertilizerButton"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -143.0
+offset_top = -114.0
+offset_right = 116.0
+offset_bottom = 38.0
+mouse_filter = 2
+texture = ExtResource("15_wlhpw")
+
+[node name="Label" type="Label" parent="BottomPanel/Buttons/FertilizerButton/Tooltip"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -65.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.278431, 0.239216, 0.156863, 1)
+theme_override_font_sizes/font_size = 22
+text = "Fertilizante"
+
+[node name="Label2" type="Label" parent="BottomPanel/Buttons/FertilizerButton/Tooltip"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 56.0
+offset_right = 237.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(0.564706, 0.407843, 0.0980392, 1)
+text = "Consigue que crezcan mas hierbas y mas rápido"
+autowrap_mode = 2
 
 [connection signal="timeout" from="GrassSpawner/Timer" to="GrassSpawner" method="_on_timer_timeout"]
 [connection signal="mouse_entered" from="BottomPanel/Buttons/PrunerButton" to="BottomPanel/Buttons/PrunerButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="BottomPanel/Buttons/PrunerButton" to="BottomPanel/Buttons/PrunerButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="BottomPanel/Buttons/PrunerButton" to="UpgradesManager" method="_on_pruner_button_pressed"]
+[connection signal="mouse_entered" from="BottomPanel/Buttons/FertilizerButton" to="BottomPanel/Buttons/FertilizerButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="BottomPanel/Buttons/FertilizerButton" to="BottomPanel/Buttons/FertilizerButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="BottomPanel/Buttons/FertilizerButton" to="UpgradesManager" method="upgrade_fertilizer"]

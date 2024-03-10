@@ -9,11 +9,15 @@ var mouse_position_last_frame: Vector2
 var tween_scale
 var is_pulled := false ## True when grass finally pulled and ready to disappear
 
+func _ready():
+	scale = Vector2(0,0)
+	tween_scale = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tween_scale.tween_property(self, "scale", Vector2(1, 1), 1)
+
 func _input(event):
 	if is_pulled:
 		return
 	if !is_pulling and event is InputEventMouseMotion:
-		event.position
 		if can_pull(event.position):
 			_on_mouse_entered()
 		else:

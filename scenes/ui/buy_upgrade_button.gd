@@ -1,5 +1,6 @@
 extends Button
 
+@export var upgrade_type: UpgradesManager.UpgradeTypes
 @export var resource: ResourcesManager.GameResourceType
 var is_upgrade_max: bool
 var tooltip_tween: Tween
@@ -17,7 +18,10 @@ func on_money_changed():
 		$TextureRect.modulate = Color.WHITE
 
 func get_current_cost() -> int:
-	return %UpgradesManager.get_next_pruner().upgrade_cost
+	if upgrade_type == UpgradesManager.UpgradeTypes.PRUNER:
+		return %UpgradesManager.get_next_pruner().upgrade_cost
+	else:
+		return %UpgradesManager.get_next_fertilizer().upgrade_cost
 
 func _on_mouse_entered():
 	if tooltip_tween != null:

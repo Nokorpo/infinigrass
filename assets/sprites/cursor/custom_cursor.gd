@@ -14,7 +14,7 @@ func _ready():
 	Input.set_custom_mouse_cursor(drag, Input.CURSOR_DRAG)
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		Input.set_default_cursor_shape(Input.CURSOR_DRAG)
 	else:

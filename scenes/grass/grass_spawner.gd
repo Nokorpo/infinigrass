@@ -1,10 +1,10 @@
 extends Node2D
 
 const GRASS = preload("res://scenes/grass/grass.tscn")
+var max_grass = 12
 
 func _on_timer_timeout():
-	const MAX_GRASS = 12
-	if $Grasses.get_child_count() < MAX_GRASS:
+	if $Grasses.get_child_count() < max_grass:
 		spawn_grass()
 
 func _ready():

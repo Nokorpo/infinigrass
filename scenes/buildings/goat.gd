@@ -1,6 +1,7 @@
 extends Node2D
 
 signal instantiated
+signal cancel_instantiation
 
 @export_category("Resource")
 @export var resource: ResourcesManager.GameResourceType
@@ -27,6 +28,7 @@ func _input(event):
 			self.modulate = Color("ffffff")
 			instantiated.emit()
 		else:
+			cancel_instantiation.emit()
 			queue_free()
 
 func _on_timer_timeout() -> void:

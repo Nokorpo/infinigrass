@@ -1,6 +1,7 @@
 extends Node2D
 
 signal instantiated
+signal cancel_instantiation
 
 @export_category("Visuals")
 @export var sprite_on_spawn: Texture2D
@@ -41,6 +42,7 @@ func _input(event: InputEvent) -> void:
 			self.modulate = Color("ffffff")
 			instantiated.emit()
 		else:
+			cancel_instantiation.emit()
 			queue_free()
 	if finished and is_left_click(event) and is_mouse_inside():
 		ResourcesManager.add_resource(amount, resource)

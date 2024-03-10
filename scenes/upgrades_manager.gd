@@ -70,6 +70,7 @@ func upgrade_pruner():
 				sibling.target_pull_distance = get_current_pruner().target_pull_distance
 		
 		%PrunerButton/TextureRect.texture = load(get_current_pruner().sprite)
+		%PurchaseSound.play(0)
 
 func get_current_pruner():
 	return PRUNER_DATA[pruner_level]
@@ -91,6 +92,7 @@ func upgrade_fertilizer():
 		
 		%FertilizerButton/TextureRect.texture = load(get_current_fertilizer().sprite)
 		apply_fertilizer_upgrade()
+		%PurchaseSound.play(0)
 
 func get_current_fertilizer():
 	return FERTILIZER_DATA[fertilizer_level]

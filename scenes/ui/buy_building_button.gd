@@ -16,9 +16,14 @@ func _on_button_down():
 		var this_item = load(gameplay_item).instantiate()
 		%Grasses.add_child(this_item)
 		this_item.instantiated.connect(_on_item_instantiated)
+		this_item.cancel_instantiation.connect(_on_instantiation_canceled)
+		%AcceptSound.play(0)
 
 func _on_item_instantiated():
 	ResourcesManager.subtract_resource(cost, resource)
+
+func _on_instantiation_canceled():
+	%CancelSound.play(0)
 
 func _on_mouse_entered():
 	if tooltip_tween != null:

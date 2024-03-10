@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cbw0iwo3tewe8"]
+[gd_scene load_steps=34 format=3 uid="uid://cbw0iwo3tewe8"]
 
 [ext_resource type="Script" path="res://scenes/grass/grass_spawner.gd" id="1_i14n6"]
 [ext_resource type="Script" path="res://scenes/upgrades_manager.gd" id="2_fwc41"]
@@ -23,6 +23,9 @@
 [ext_resource type="Script" path="res://scenes/ui/tooltip_price.gd" id="16_m3t57"]
 [ext_resource type="Script" path="res://scenes/ui/buy_building_button.gd" id="16_rxr47"]
 [ext_resource type="Texture2D" uid="uid://d3tpohvew2ed8" path="res://assets/sprites/ui/tooltip.svg" id="18_uk2c6"]
+[ext_resource type="AudioStream" uid="uid://dt6mglh0cvsmr" path="res://assets/sound/purchase.ogg" id="23_x245p"]
+[ext_resource type="AudioStream" uid="uid://4cifbxdt1rjy" path="res://assets/sound/accept.ogg" id="24_wu1f0"]
+[ext_resource type="AudioStream" uid="uid://bh11yapba75l1" path="res://assets/sound/cancel.ogg" id="25_fj4yu"]
 
 [sub_resource type="Theme" id="Theme_l8mw1"]
 Label/font_sizes/font_size = 24
@@ -649,6 +652,23 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("5_gl23d")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="PurchaseSound" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("23_x245p")
+volume_db = -8.0
+
+[node name="AcceptSound" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("24_wu1f0")
+volume_db = -12.0
+
+[node name="CancelSound" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("25_fj4yu")
+volume_db = -12.0
 
 [connection signal="timeout" from="GrassSpawner/Timer" to="GrassSpawner" method="_on_timer_timeout"]
 [connection signal="mouse_entered" from="BottomPanel/Buttons/PrunerButton" to="BottomPanel/Buttons/PrunerButton" method="_on_mouse_entered"]

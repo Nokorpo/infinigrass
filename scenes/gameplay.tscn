@@ -279,6 +279,10 @@ size_flags_vertical = 12
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon_alignment = 1
+script = ExtResource("16_rxr47")
+gameplay_item = "res://scenes/buildings/goat.tscn"
+resource = 1
+cost = 50
 
 [node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/GoatButton"]
 layout_mode = 0
@@ -289,6 +293,41 @@ offset_bottom = 89.0
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("10_fspom")
 
+[node name="Tooltip" type="TextureRect" parent="BottomPanel/Buttons/GoatButton"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -86.0
+offset_top = -132.0
+offset_right = 173.0
+offset_bottom = 20.0
+mouse_filter = 2
+texture = ExtResource("18_uk2c6")
+flip_h = true
+
+[node name="Label" type="Label" parent="BottomPanel/Buttons/GoatButton/Tooltip"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -65.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.278431, 0.239216, 0.156863, 1)
+theme_override_font_sizes/font_size = 22
+text = "Cabra"
+
+[node name="Label2" type="Label" parent="BottomPanel/Buttons/GoatButton/Tooltip"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 56.0
+offset_right = 237.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(0.564706, 0.407843, 0.0980392, 1)
+text = "Come cebada y produce dinero por algún motivo"
+autowrap_mode = 2
+
 [node name="FermenterButton" type="Button" parent="BottomPanel/Buttons"]
 custom_minimum_size = Vector2(87, 84)
 layout_mode = 2
@@ -296,6 +335,7 @@ size_flags_vertical = 12
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon_alignment = 1
+script = ExtResource("16_rxr47")
 
 [node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/FermenterButton"]
 layout_mode = 0
@@ -313,6 +353,7 @@ size_flags_vertical = 12
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon_alignment = 1
+script = ExtResource("16_rxr47")
 
 [node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/LaborerButton"]
 layout_mode = 0
@@ -384,6 +425,9 @@ autowrap_mode = 2
 [connection signal="button_down" from="BottomPanel/Buttons/BarleyButton" to="BottomPanel/Buttons/BarleyButton" method="_on_button_down"]
 [connection signal="mouse_entered" from="BottomPanel/Buttons/BarleyButton" to="BottomPanel/Buttons/BarleyButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="BottomPanel/Buttons/BarleyButton" to="BottomPanel/Buttons/BarleyButton" method="_on_mouse_exited"]
+[connection signal="button_down" from="BottomPanel/Buttons/GoatButton" to="BottomPanel/Buttons/GoatButton" method="_on_button_down"]
+[connection signal="mouse_entered" from="BottomPanel/Buttons/GoatButton" to="BottomPanel/Buttons/GoatButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="BottomPanel/Buttons/GoatButton" to="BottomPanel/Buttons/GoatButton" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="BottomPanel/Buttons/FertilizerButton" to="BottomPanel/Buttons/FertilizerButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="BottomPanel/Buttons/FertilizerButton" to="BottomPanel/Buttons/FertilizerButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="BottomPanel/Buttons/FertilizerButton" to="UpgradesManager" method="upgrade_fertilizer"]

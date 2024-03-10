@@ -10,6 +10,8 @@ func _ready():
 	ResourcesManager.resource_changed.connect(on_resource_changed)
 
 func _on_button_down():
+	print(cost)
+	#return ResourcesManager.get_resource_quantity(resource) >= cost
 	if can_buy_item():
 		ResourcesManager.subtract_resource(cost, resource)
 		var this_item = load(gameplay_item).instantiate()
@@ -35,5 +37,5 @@ func on_resource_changed():
 		disabled = true
 		$TextureRect.modulate = Color(0, 0, 0, .6)
 
-func can_buy_item():
+func can_buy_item() -> bool:
 	return ResourcesManager.get_resource_quantity(resource) >= cost

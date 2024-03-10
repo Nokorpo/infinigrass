@@ -1,14 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0ks5cto5e1of"]
+[gd_scene load_steps=6 format=3 uid="uid://d0ks5cto5e1of"]
 
 [ext_resource type="Script" path="res://scenes/buildings/goat.gd" id="1_1c8vk"]
-[ext_resource type="Texture2D" uid="uid://bwy67pbxwwb31" path="res://assets/sprites/goat.png" id="2_m7kff"]
+[ext_resource type="Texture2D" uid="uid://dqb0lf8vg36v8" path="res://assets/sprites/ingame/goat animation/goat_frame1.png" id="2_buvka"]
+[ext_resource type="Texture2D" uid="uid://wew3p58jopc4" path="res://assets/sprites/ingame/goat animation/goat_frame2.png" id="3_cgreu"]
+[ext_resource type="Texture2D" uid="uid://dkgoemyihjug3" path="res://assets/sprites/ingame/goat animation/goat_frame3.png" id="4_k6lvx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hkbq0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_buvka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cgreu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_k6lvx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="Goat" type="Node2D"]
 script = ExtResource("1_1c8vk")
 amount = 10
 time_until_completion = 6.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_m7kff")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_hkbq0")
+autoplay = "default"
+frame_progress = 0.104961
 
 [node name="Timer" type="Timer" parent="."]

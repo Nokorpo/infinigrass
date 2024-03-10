@@ -19,17 +19,11 @@ func _ready() -> void:
 
 func _process(delta):
 	if !is_instantiated:
-			var mouse_position = get_viewport().get_mouse_position()
-			position = mouse_position
-			modulate = Color("ffffff")
-			if !can_be_placed():
-				modulate = Color("ffa092")
-
-func can_be_placed():
-	if position.x > 775 or position.x < 25\
-		or position.y > 620 or position.y < 30:
-		return false
-	return true
+		var mouse_position = get_viewport().get_mouse_position()
+		position = mouse_position
+		modulate = Color("ffffff")
+		if !can_be_placed():
+			modulate = Color("ffa092")
 
 func _on_timer_timeout() -> void:
 	$Sprite2D.texture = sprite_on_completed
@@ -48,6 +42,12 @@ func _input(event: InputEvent) -> void:
 		ResourcesManager.add_resource(amount, resource)
 		get_viewport().set_input_as_handled()
 		queue_free()
+
+func can_be_placed():
+	if position.x > 775 or position.x < 25\
+		or position.y > 620 or position.y < 30:
+		return false
+	return true
 
 func is_mouse_inside():
 	return $Sprite2D.get_rect().has_point(to_local(get_global_mouse_position()))

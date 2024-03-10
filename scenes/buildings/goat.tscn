@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0ks5cto5e1of"]
+
+[ext_resource type="Script" path="res://scenes/buildings/goat.gd" id="1_1c8vk"]
+[ext_resource type="Texture2D" uid="uid://bwy67pbxwwb31" path="res://assets/sprites/goat.png" id="2_m7kff"]
+
+[node name="Goat" type="Node2D"]
+script = ExtResource("1_1c8vk")
+amount = 10
+time_until_completion = 6.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_m7kff")
+
+[node name="Timer" type="Timer" parent="."]

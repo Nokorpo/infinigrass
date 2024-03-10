@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3x4ux3esm5n4"]
+
+[ext_resource type="Script" path="res://scenes/buildings/barley.gd" id="1_heyq3"]
+[ext_resource type="Texture2D" uid="uid://c3i4dxxjpouij" path="res://assets/sprites/barley.png" id="1_m23mb"]
+[ext_resource type="Texture2D" uid="uid://dypnv8magpd3" path="res://assets/sprites/barley_finished.png" id="2_wbeod"]
+
+[node name="Barley" type="Node2D"]
+script = ExtResource("1_heyq3")
+sprite_on_spawn = ExtResource("1_m23mb")
+sprite_on_completed = ExtResource("2_wbeod")
+resource = 1
+amount = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_m23mb")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

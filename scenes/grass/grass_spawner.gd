@@ -18,4 +18,4 @@ func spawn_grass():
 	$Grasses.add_child(this_grass)
 
 func grass_pulled():
-	%ResourcesManager.add_money(10)
+	ResourcesManager.add_resource(10, ResourcesManager.GameResourceType.MONEY)

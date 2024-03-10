@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyajc7s0odvi5"]
+
+[ext_resource type="Script" path="res://scenes/buildings/labor_state_machine.gd" id="1_c754x"]
+[ext_resource type="Texture2D" uid="uid://b1fe60bkgxkql" path="res://assets/sprites/fermenter_idle.png" id="2_knpb7"]
+[ext_resource type="Texture2D" uid="uid://bl2xud4s432qb" path="res://assets/sprites/fermenter_working.png" id="3_nt2po"]
+[ext_resource type="Texture2D" uid="uid://clx286ncgebc8" path="res://assets/sprites/fermenter_done.png" id="4_64kb3"]
+
+[node name="Fermenter" type="Node2D"]
+script = ExtResource("1_c754x")
+sprite_on_idle = ExtResource("2_knpb7")
+sprite_on_working = ExtResource("3_nt2po")
+sprite_on_done = ExtResource("4_64kb3")
+resource = 2
+amount = 5
+time_until_done = 10.0
+recharge_resource = 1
+recharge_amount = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_knpb7")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

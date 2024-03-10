@@ -17,7 +17,7 @@ func _ready() -> void:
 	$Timer.start(time_until_done)
 	$Sprite2D.texture = sprite_on_spawn
 
-func _process(delta):
+func _process(_delta):
 	if !is_instantiated:
 		var mouse_position = get_viewport().get_mouse_position()
 		position = mouse_position
@@ -52,5 +52,5 @@ func can_be_placed():
 func is_mouse_inside():
 	return $Sprite2D.get_rect().has_point(to_local(get_global_mouse_position()))
 
-static func is_left_click(event: InputEvent):
+func is_left_click(event: InputEvent):
 	return event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed

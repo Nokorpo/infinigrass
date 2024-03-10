@@ -1,5 +1,7 @@
 extends Node2D
 
+signal instantiated
+
 @export_category("Visuals")
 @export var sprite_on_idle: Texture2D
 @export var sprite_on_working: Texture2D
@@ -11,6 +13,7 @@ extends Node2D
 @export_category("Resources consumed by recharge")
 @export var recharge_resource: ResourcesManager.GameResourceType
 @export var recharge_amount: int = 1
+var is_instantiated := false
 
 enum LaborStates { IDLE, WORKING, DONE}
 var state: LaborStates = LaborStates.IDLE
@@ -18,7 +21,23 @@ var state: LaborStates = LaborStates.IDLE
 func _ready() -> void:
 	$Sprite2D.texture = sprite_on_idle
 
+func _process(delta):
+	if !is_instantiated:
+		var mouse_position = get_viewport().get_mouse_position()
+		position = mouse_position
+		modulate = Color("ffffff")
+		if !can_be_placed():
+			modulate = Color("ffa092")
+
 func _input(event: InputEvent) -> void:
+	if !is_instantiated and Input.is_action_just_released("click"):
+		if can_be_placed():
+			$Timer.start()
+			is_instantiated = true
+			self.modulate = Color("ffffff")
+			instantiated.emit()
+		else:
+			queue_free()
 	if is_left_click(event) and is_mouse_inside():
 		match state:
 			LaborStates.IDLE:
@@ -35,9 +54,15 @@ func _input(event: InputEvent) -> void:
 func is_mouse_inside():
 	return $Sprite2D.get_rect().has_point(to_local(get_global_mouse_position()))
 
-static func is_left_click(event: InputEvent):
+func is_left_click(event: InputEvent):
 	return event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed
 
 func _on_timer_timeout() -> void:
 	state = LaborStates.DONE
 	$Sprite2D.texture = sprite_on_done
+
+func can_be_placed():
+	if position.x > 775 or position.x < 25\
+		or position.y > 620 or position.y < 30:
+		return false
+	return true

@@ -30,6 +30,7 @@ func _input(event):
 			queue_free()
 
 func _on_timer_timeout() -> void:
+	$CPUParticles2D.emitting = true
 	ResourcesManager.add_resource(amount, resource)
 
 func can_be_placed():

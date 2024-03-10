@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0ks5cto5e1of"]
+[gd_scene load_steps=9 format=3 uid="uid://d0ks5cto5e1of"]
 
 [ext_resource type="Script" path="res://scenes/buildings/goat.gd" id="1_1c8vk"]
 [ext_resource type="Texture2D" uid="uid://bjwpy82a1w767" path="res://assets/sprites/shadow.png" id="2_0oac5"]
 [ext_resource type="Texture2D" uid="uid://dqb0lf8vg36v8" path="res://assets/sprites/ingame/goat animation/goat_frame1.png" id="2_buvka"]
 [ext_resource type="Texture2D" uid="uid://wew3p58jopc4" path="res://assets/sprites/ingame/goat animation/goat_frame2.png" id="3_cgreu"]
 [ext_resource type="Texture2D" uid="uid://dkgoemyihjug3" path="res://assets/sprites/ingame/goat animation/goat_frame3.png" id="4_k6lvx"]
+[ext_resource type="Texture2D" uid="uid://d4hlx2pe4d8nl" path="res://assets/sprites/ui/coin.png" id="6_hixs4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hkbq0"]
 animations = [{
@@ -23,21 +24,38 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="Curve" id="Curve_fpuyd"]
+_data = [Vector2(0, 0), 0.0, 23.9341, 0, 0, Vector2(0.11157, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="Goat" type="Node2D"]
 script = ExtResource("1_1c8vk")
-amount = 10
 time_until_completion = 6.0
 
 [node name="Shadow" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(-4, 32)
+position = Vector2(-4, 0)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_0oac5")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -30)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_hkbq0")
 autoplay = "default"
-frame_progress = 0.104961
+frame_progress = 0.275041
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 6.0
+autostart = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(20, -54)
+emitting = false
+amount = 1
+one_shot = true
+texture = ExtResource("6_hixs4")
+gravity = Vector2(0, -100)
+scale_amount_curve = SubResource("Curve_fpuyd")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -36,7 +36,7 @@ func _input(event):
 		$Grass/AnimationPlayer.play("idle", 100)
 		is_pulling = false
 		grass.modulate.r = 1
-		#rotation = 0
+		grass.rotation = 0
 		grass.scale.y = 1
 		grass.scale.x = 1
 

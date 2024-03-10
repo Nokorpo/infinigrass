@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cbw0iwo3tewe8"]
+[gd_scene load_steps=38 format=3 uid="uid://cbw0iwo3tewe8"]
 
 [ext_resource type="Script" path="res://scenes/grass/grass_spawner.gd" id="1_i14n6"]
 [ext_resource type="Script" path="res://scenes/upgrades_manager.gd" id="2_fwc41"]

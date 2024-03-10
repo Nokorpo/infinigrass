@@ -6,6 +6,21 @@
 [ext_resource type="Texture2D" uid="uid://bjwpy82a1w767" path="res://assets/sprites/shadow.png" id="4_aggaw"]
 [ext_resource type="Texture2D" uid="uid://cyhuc4iejm1pq" path="res://assets/sprites/ui/barley-icon.png" id="4_rll8r"]
 
+[sub_resource type="Animation" id="Animation_6x47e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.7, 0.7)]
+}
+
 [sub_resource type="Animation" id="Animation_48bb6"]
 resource_name = "ready"
 loop_mode = 1
@@ -22,25 +37,25 @@ tracks/0/keys = {
 "values": [Vector2(0.7, 0.7), Vector2(0.75, 0.75)]
 }
 
-[sub_resource type="Animation" id="Animation_6x47e"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aaw4k"]
+_data = {
+"RESET": SubResource("Animation_6x47e"),
+"ready": SubResource("Animation_48bb6")
+}
+
+[sub_resource type="Animation" id="Animation_cw2x6"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("Sprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.7, 0.7)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_aaw4k"]
-_data = {
-"RESET": SubResource("Animation_6x47e"),
-"ready": SubResource("Animation_48bb6")
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_20k8v"]
@@ -58,21 +73,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
 "values": [-0.0698132, 0.0698132]
-}
-
-[sub_resource type="Animation" id="Animation_cw2x6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ru6gc"]

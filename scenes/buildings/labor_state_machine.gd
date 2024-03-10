@@ -32,7 +32,6 @@ func _process(delta):
 func _input(event: InputEvent) -> void:
 	if !is_instantiated and Input.is_action_just_released("click"):
 		if can_be_placed():
-			$Timer.start()
 			is_instantiated = true
 			self.modulate = Color("ffffff")
 			instantiated.emit()
@@ -46,11 +45,14 @@ func _input(event: InputEvent) -> void:
 					state = LaborStates.WORKING
 					$Timer.start(time_until_done)
 					$Sprite2D.texture = sprite_on_working
+					$AnimatedSprite2D.play("working")
 					get_viewport().set_input_as_handled()
 			LaborStates.DONE:
 				ResourcesManager.add_resource(amount, resource)
 				state = LaborStates.IDLE
 				$Sprite2D.texture = sprite_on_idle
+				$AnimatedSprite2D.play("idle")
+				$CPUParticles2D.emitting = true
 				get_viewport().set_input_as_handled()
 
 func is_mouse_inside():
@@ -62,6 +64,7 @@ func is_left_click(event: InputEvent):
 func _on_timer_timeout() -> void:
 	state = LaborStates.DONE
 	$Sprite2D.texture = sprite_on_done
+	$AnimatedSprite2D.play("done")
 
 func can_be_placed():
 	if position.x > 775 or position.x < 25\

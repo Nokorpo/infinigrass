@@ -1,10 +1,76 @@
-[gd_scene load_steps=6 format=3 uid="uid://5l2jx4qbccm0"]
+[gd_scene load_steps=19 format=3 uid="uid://5l2jx4qbccm0"]
 
 [ext_resource type="Script" path="res://scenes/buildings/labor_state_machine.gd" id="1_723ww"]
 [ext_resource type="Texture2D" uid="uid://beo50ctvdi8l6" path="res://assets/sprites/laborer_idle.png" id="2_c3lsr"]
 [ext_resource type="Texture2D" uid="uid://n3llgys0jj64" path="res://assets/sprites/laborer_working.png" id="3_dxxfg"]
 [ext_resource type="Texture2D" uid="uid://gdi6ultnxlym" path="res://assets/sprites/laborer_done.png" id="4_i4kra"]
 [ext_resource type="Texture2D" uid="uid://bjwpy82a1w767" path="res://assets/sprites/shadow.png" id="5_2pryl"]
+[ext_resource type="Texture2D" uid="uid://dm1628c6bwnrq" path="res://assets/sprites/ingame/laborer animation/done/laborer_done1.png" id="5_lrhcl"]
+[ext_resource type="Texture2D" uid="uid://cbvjyj6o88tkf" path="res://assets/sprites/ingame/laborer animation/done/laborer_done2.png" id="6_0xske"]
+[ext_resource type="Texture2D" uid="uid://dmnjlk7jtynb3" path="res://assets/sprites/ingame/laborer animation/done/laborer_done3.png" id="7_vvtsy"]
+[ext_resource type="Texture2D" uid="uid://ctfewsy2p3e7s" path="res://assets/sprites/ingame/laborer animation/done/laborer_done4.png" id="8_r144t"]
+[ext_resource type="Texture2D" uid="uid://b7d1qmhnmj15t" path="res://assets/sprites/ingame/laborer animation/idle/laborer_idle1.png" id="9_vv0p6"]
+[ext_resource type="Texture2D" uid="uid://cp1rcdiw0qv2k" path="res://assets/sprites/ingame/laborer animation/idle/laborer_idle2.png" id="10_ja7ga"]
+[ext_resource type="Texture2D" uid="uid://bw07jhbohucjt" path="res://assets/sprites/ingame/laborer animation/idle/laborer_idle3.png" id="11_bu31e"]
+[ext_resource type="Texture2D" uid="uid://dc25t2rwxlm5s" path="res://assets/sprites/ingame/laborer animation/working/laborer_frame1.png" id="12_l7ddd"]
+[ext_resource type="Texture2D" uid="uid://baebch207onjn" path="res://assets/sprites/ingame/laborer animation/working/laborer_frame2.png" id="13_b7xvf"]
+[ext_resource type="Texture2D" uid="uid://co2lolul5dkch" path="res://assets/sprites/ingame/laborer animation/working/laborer_frame3.png" id="14_c6pb7"]
+[ext_resource type="Texture2D" uid="uid://cyhuc4iejm1pq" path="res://assets/sprites/ui/barley-icon.png" id="16_4q2yd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_twad6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_lrhcl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0xske")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vvtsy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_r144t")
+}],
+"loop": true,
+"name": &"done",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_vv0p6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ja7ga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_bu31e")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_l7ddd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_b7xvf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_c6pb7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_b7xvf")
+}],
+"loop": true,
+"name": &"working",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve" id="Curve_y7p4r"]
+_data = [Vector2(0, 0), 0.0, 23.9341, 0, 0, Vector2(0.11157, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Laborer" type="Node2D"]
 script = ExtResource("1_723ww")
@@ -17,8 +83,16 @@ time_until_done = 15.0
 recharge_resource = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.6, 0.6)
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_c3lsr")
+offset = Vector2(-5, -65)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_twad6")
+animation = &"idle"
+autoplay = "idle"
 offset = Vector2(-5, -75)
 
 [node name="Timer" type="Timer" parent="."]
@@ -28,5 +102,14 @@ one_shot = true
 z_index = -1
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("5_2pryl")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-4, -90)
+emitting = false
+amount = 1
+one_shot = true
+texture = ExtResource("16_4q2yd")
+gravity = Vector2(0, -100)
+scale_amount_curve = SubResource("Curve_y7p4r")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -43,7 +43,7 @@ position = Vector2(0, -30)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_hkbq0")
 autoplay = "default"
-frame_progress = 0.275041
+frame_progress = 0.577819
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 6.0

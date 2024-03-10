@@ -1,10 +1,59 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyajc7s0odvi5"]
+[gd_scene load_steps=14 format=3 uid="uid://cyajc7s0odvi5"]
 
 [ext_resource type="Script" path="res://scenes/buildings/labor_state_machine.gd" id="1_c754x"]
 [ext_resource type="Texture2D" uid="uid://fast244fi7ax" path="res://assets/sprites/ingame/fermenter_idle.png" id="2_pmjck"]
 [ext_resource type="Texture2D" uid="uid://cfyx7tlgw83fj" path="res://assets/sprites/ingame/fermenter_working.png" id="3_glb40"]
 [ext_resource type="Texture2D" uid="uid://cusvgwctd8pyt" path="res://assets/sprites/ingame/fermenter_done.png" id="4_8u0bc"]
 [ext_resource type="Texture2D" uid="uid://bjwpy82a1w767" path="res://assets/sprites/shadow.png" id="5_dhxjl"]
+[ext_resource type="Texture2D" uid="uid://bi6kpbtm16mef" path="res://assets/sprites/ingame/fermenter animation/fermenter_frame1.png" id="5_wkc04"]
+[ext_resource type="Texture2D" uid="uid://cecoo5iopur27" path="res://assets/sprites/ingame/fermenter animation/fermenter_frame2.png" id="6_gxuoh"]
+[ext_resource type="Texture2D" uid="uid://cyu5dvyyjioab" path="res://assets/sprites/ingame/fermenter animation/fermenter_frame3.png" id="7_n0wlq"]
+[ext_resource type="Texture2D" uid="uid://cwxgl617thgil" path="res://assets/sprites/ingame/fermenter animation/fermenter_frame4.png" id="8_tdsy1"]
+[ext_resource type="Texture2D" uid="uid://bjdkbbikix7kh" path="res://assets/sprites/ingame/fermenter animation/fermenter_frame5.png" id="9_uceaq"]
+[ext_resource type="Texture2D" uid="uid://cbgjul6kc0be0" path="res://assets/sprites/ui/beer.png" id="11_0inns"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sj5cc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_wkc04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gxuoh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_n0wlq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tdsy1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_uceaq")
+}],
+"loop": true,
+"name": &"done",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pmjck")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_glb40")
+}],
+"loop": true,
+"name": &"working",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve" id="Curve_fpccl"]
+_data = [Vector2(0, 0), 0.0, 23.9341, 0, 0, Vector2(0.11157, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Fermenter" type="Node2D"]
 script = ExtResource("1_c754x")
@@ -18,8 +67,17 @@ recharge_resource = 1
 recharge_amount = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("3_glb40")
+texture = ExtResource("2_pmjck")
+offset = Vector2(0, -50)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_sj5cc")
+animation = &"idle"
+autoplay = "idle"
 offset = Vector2(0, -50)
 
 [node name="Timer" type="Timer" parent="."]
@@ -29,5 +87,14 @@ one_shot = true
 z_index = -1
 position = Vector2(0, 4)
 texture = ExtResource("5_dhxjl")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-1, -69)
+emitting = false
+amount = 1
+one_shot = true
+texture = ExtResource("11_0inns")
+gravity = Vector2(0, -100)
+scale_amount_curve = SubResource("Curve_fpccl")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

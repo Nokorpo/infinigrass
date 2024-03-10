@@ -7,9 +7,14 @@ var tooltip_tween: Tween
 
 func _ready():
 	on_resource_changed()
+	$Tooltip/Price.set_texture(resource)
 	ResourcesManager.resource_changed.connect(on_resource_changed)
 
 func on_resource_changed():
+	if is_upgrade_max:
+		$Tooltip/Price.set_price("MAX")
+	else:
+		$Tooltip/Price.set_price(get_current_cost())
 	if ResourcesManager.get_resource_quantity(resource) < get_current_cost()\
 		and !is_upgrade_max:
 		disabled = true

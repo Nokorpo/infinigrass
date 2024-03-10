@@ -300,6 +300,7 @@ text = "Plantala para conseguir cebada"
 autowrap_mode = 2
 
 [node name="Price" type="HBoxContainer" parent="BottomPanel/Buttons/BarleyButton/Tooltip"]
+layout_mode = 0
 offset_left = 130.0
 offset_top = 7.0
 offset_right = 238.0
@@ -381,6 +382,7 @@ text = "Come cebada y produce dinero por algún motivo"
 autowrap_mode = 2
 
 [node name="Price" type="HBoxContainer" parent="BottomPanel/Buttons/GoatButton/Tooltip"]
+layout_mode = 0
 offset_left = 130.0
 offset_top = 7.0
 offset_right = 238.0
@@ -461,6 +463,7 @@ text = "Cargalo de cebada para hacer cerveza"
 autowrap_mode = 2
 
 [node name="Price" type="HBoxContainer" parent="BottomPanel/Buttons/FermenterButton/Tooltip"]
+layout_mode = 0
 offset_left = 130.0
 offset_top = 7.0
 offset_right = 238.0
@@ -543,6 +546,7 @@ text = "A cambio de cerveza, recoge cebada por ti"
 autowrap_mode = 2
 
 [node name="Price" type="HBoxContainer" parent="BottomPanel/Buttons/LaborerButton/Tooltip"]
+layout_mode = 0
 offset_left = 130.0
 offset_top = 7.0
 offset_right = 238.0
@@ -622,6 +626,7 @@ text = "Consigue que crezcan mas hierbas y mas rápido"
 autowrap_mode = 2
 
 [node name="Price" type="HBoxContainer" parent="BottomPanel/Buttons/FertilizerButton/Tooltip"]
+layout_mode = 0
 offset_left = 130.0
 offset_top = 7.0
 offset_right = 238.0

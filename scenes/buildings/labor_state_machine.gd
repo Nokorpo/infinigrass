@@ -17,11 +17,12 @@ var is_instantiated := false
 
 enum LaborStates { IDLE, WORKING, DONE}
 var state: LaborStates = LaborStates.IDLE
+var need_tween: Tween
 
 func _ready() -> void:
 	$Sprite2D.texture = sprite_on_idle
 
-func _process(delta):
+func _process(_delta):
 	if !is_instantiated:
 		var mouse_position = get_viewport().get_mouse_position()
 		position = mouse_position
@@ -46,6 +47,7 @@ func _input(event: InputEvent) -> void:
 					$Timer.start(time_until_done)
 					$Sprite2D.texture = sprite_on_working
 					$AnimatedSprite2D.play("working")
+					hide_need()
 					get_viewport().set_input_as_handled()
 			LaborStates.DONE:
 				ResourcesManager.add_resource(amount, resource)
@@ -53,6 +55,7 @@ func _input(event: InputEvent) -> void:
 				$Sprite2D.texture = sprite_on_idle
 				$AnimatedSprite2D.play("idle")
 				$CPUParticles2D.emitting = true
+				show_need()
 				get_viewport().set_input_as_handled()
 
 func is_mouse_inside():
@@ -71,3 +74,18 @@ func can_be_placed():
 		or position.y > 620 or position.y < 30:
 		return false
 	return true
+
+func show_need():
+	await get_tree().create_timer(.35).timeout
+	if state != LaborStates.IDLE:
+		return
+	if need_tween != null:
+		need_tween.kill()
+	need_tween = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	need_tween.tween_property($Need, "scale", Vector2(1, 1), 1)
+
+func hide_need():
+	if need_tween != null:
+		need_tween.kill()
+	need_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	need_tween.tween_property($Need, "scale", Vector2(0, 0), .1)

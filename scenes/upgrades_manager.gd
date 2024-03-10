@@ -33,19 +33,19 @@ const FERTILIZER_DATA: Dictionary = {
 		"sprite": "res://assets/sprites/ui/poop-1.png"
 	},
 	1: {
-		"upgrade_cost": 60,
+		"upgrade_cost": 10,
 		"max_grass": 14,
 		"grass_cooldown": 1.2,
 		"sprite": "res://assets/sprites/ui/poop-2.png"
 	},
 	2: {
-		"upgrade_cost": 110,
+		"upgrade_cost": 50,
 		"max_grass": 20,
 		"grass_cooldown": 0.5,
 		"sprite": "res://assets/sprites/ui/poop-3.png"
 	},
 	3: {
-		"upgrade_cost": 210,
+		"upgrade_cost": 200,
 		"max_grass": 30,
 		"grass_cooldown": 0.1,
 		"sprite": "res://assets/sprites/ui/poop-4.png"

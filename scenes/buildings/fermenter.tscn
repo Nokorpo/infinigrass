@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cyajc7s0odvi5"]
+[gd_scene load_steps=18 format=3 uid="uid://cyajc7s0odvi5"]
 
 [ext_resource type="Script" path="res://scenes/buildings/labor_state_machine.gd" id="1_c754x"]
 [ext_resource type="Texture2D" uid="uid://fast244fi7ax" path="res://assets/sprites/ingame/fermenter_idle.png" id="2_pmjck"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cwxgl617thgil" path="res://assets/sprites/ingame/fermenter animation/fermenter_frame4.png" id="8_tdsy1"]
 [ext_resource type="Texture2D" uid="uid://bjdkbbikix7kh" path="res://assets/sprites/ingame/fermenter animation/fermenter_frame5.png" id="9_uceaq"]
 [ext_resource type="Texture2D" uid="uid://cbgjul6kc0be0" path="res://assets/sprites/ui/beer.png" id="11_0inns"]
+[ext_resource type="Texture2D" uid="uid://cyhuc4iejm1pq" path="res://assets/sprites/ui/barley-icon.png" id="12_l46y1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sj5cc"]
 animations = [{
@@ -55,6 +56,43 @@ animations = [{
 _data = [Vector2(0, 0), 0.0, 23.9341, 0, 0, Vector2(0.11157, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="Animation" id="Animation_0q1gm"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="Animation" id="Animation_qgyx4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hg0r5"]
+_data = {
+"RESET": SubResource("Animation_qgyx4"),
+"idle": SubResource("Animation_0q1gm")
+}
+
 [node name="Fermenter" type="Node2D"]
 script = ExtResource("1_c754x")
 sprite_on_idle = ExtResource("2_pmjck")
@@ -96,5 +134,17 @@ one_shot = true
 texture = ExtResource("11_0inns")
 gravity = Vector2(0, -100)
 scale_amount_curve = SubResource("Curve_fpccl")
+
+[node name="Need" type="Node2D" parent="."]
+position = Vector2(0, -27)
+
+[node name="Need" type="Sprite2D" parent="Need"]
+texture = ExtResource("12_l46y1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Need/Need"]
+libraries = {
+"": SubResource("AnimationLibrary_hg0r5")
+}
+autoplay = "idle"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

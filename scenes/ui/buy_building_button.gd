@@ -7,6 +7,8 @@ var tooltip_tween: Tween
 
 func _ready():
 	on_resource_changed()
+	$Tooltip/Price.set_texture(resource)
+	$Tooltip/Price.set_price(cost)
 	ResourcesManager.resource_changed.connect(on_resource_changed)
 
 func _on_button_down():

@@ -90,7 +90,7 @@ script = ExtResource("1_heyq3")
 sprite_on_spawn = ExtResource("2_7c418")
 sprite_on_completed = ExtResource("3_jtcao")
 resource = 1
-amount = 10
+amount = 5
 time_until_done = 5.0
 
 [node name="Shadow" type="Sprite2D" parent="."]

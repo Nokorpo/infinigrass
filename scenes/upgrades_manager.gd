@@ -10,17 +10,17 @@ const PRUNER_DATA: Dictionary = {
 		"sprite": "res://assets/sprites/ui/pruner-1.png"
 	},
 	1: {
-		"upgrade_cost": 50,
+		"upgrade_cost": 30,
 		"target_pull_distance": 1700,
 		"sprite": "res://assets/sprites/ui/pruner-2.png"
 	},
 	2: {
-		"upgrade_cost": 100,
+		"upgrade_cost": 60,
 		"target_pull_distance": 500,
 		"sprite": "res://assets/sprites/ui/pruner-3.png"
 	},
 	3: {
-		"upgrade_cost": 200,
+		"upgrade_cost": 150,
 		"target_pull_distance": 150,
 		"sprite": "res://assets/sprites/ui/pruner-4.png"
 	}
@@ -39,13 +39,13 @@ const FERTILIZER_DATA: Dictionary = {
 		"sprite": "res://assets/sprites/ui/poop-2.png"
 	},
 	2: {
-		"upgrade_cost": 50,
+		"upgrade_cost": 20,
 		"max_grass": 20,
 		"grass_cooldown": 0.5,
 		"sprite": "res://assets/sprites/ui/poop-3.png"
 	},
 	3: {
-		"upgrade_cost": 200,
+		"upgrade_cost": 40,
 		"max_grass": 30,
 		"grass_cooldown": 0.1,
 		"sprite": "res://assets/sprites/ui/poop-4.png"
@@ -88,7 +88,7 @@ func upgrade_fertilizer():
 		fertilizer_level += 1
 		if fertilizer_level + 1 == FERTILIZER_DATA.size():
 			%FertilizerButton.is_upgrade_max = true
-		ResourcesManager.subtract_resource(cost, ResourcesManager.GameResourceType.MONEY)
+		ResourcesManager.subtract_resource(cost, ResourcesManager.GameResourceType.BEER)
 		
 		%FertilizerButton/TextureRect.texture = load(get_current_fertilizer().sprite)
 		apply_fertilizer_upgrade()

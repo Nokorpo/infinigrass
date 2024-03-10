@@ -261,7 +261,7 @@ mouse_default_cursor_shape = 2
 icon_alignment = 1
 script = ExtResource("16_rxr47")
 gameplay_item = "res://scenes/buildings/barley.tscn"
-cost = 30
+cost = 10
 
 [node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/BarleyButton"]
 layout_mode = 1
@@ -350,7 +350,7 @@ icon_alignment = 1
 script = ExtResource("16_rxr47")
 gameplay_item = "res://scenes/buildings/goat.tscn"
 resource = 1
-cost = 50
+cost = 10
 
 [node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/GoatButton"]
 layout_mode = 0
@@ -432,6 +432,7 @@ icon_alignment = 1
 script = ExtResource("16_rxr47")
 gameplay_item = "res://scenes/buildings/fermenter.tscn"
 resource = 1
+cost = 30
 
 [node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/FermenterButton"]
 layout_mode = 0

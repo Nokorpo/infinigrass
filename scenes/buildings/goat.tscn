@@ -46,7 +46,7 @@ autoplay = "default"
 frame_progress = 0.577819
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 10.0
 autostart = true
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]

@@ -102,7 +102,6 @@ resource = 2
 amount = 5
 time_until_done = 10.0
 recharge_resource = 1
-recharge_amount = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

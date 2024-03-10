@@ -7,9 +7,9 @@ signal money_changed
 signal barley_changed
 signal beer_changed
 
-var money: int = 990
-var barley: int = 990
-var beer: int = 990
+var money: int = 0
+var barley: int = 0
+var beer: int = 0
 
 func add_resource(amount: int, resource_type: GameResourceType) -> void:
 	match resource_type:

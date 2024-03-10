@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 ResourcesManager="*res://scenes/resources_manager.gd"
+CustomCursor="*res://assets/sprites/cursor/custom_cursor.gd"
 
 [display]
 

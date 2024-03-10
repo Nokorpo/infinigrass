@@ -151,6 +151,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(103, 136)
 layout_mode = 2
 focus_mode = 0
+mouse_default_cursor_shape = 2
 theme = SubResource("Theme_7uaaf")
 icon_alignment = 1
 script = ExtResource("13_q4axp")
@@ -210,6 +211,7 @@ custom_minimum_size = Vector2(87, 84)
 layout_mode = 2
 size_flags_vertical = 12
 focus_mode = 0
+mouse_default_cursor_shape = 2
 icon_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/BarleyButton"]
@@ -233,6 +235,7 @@ custom_minimum_size = Vector2(87, 84)
 layout_mode = 2
 size_flags_vertical = 12
 focus_mode = 0
+mouse_default_cursor_shape = 2
 icon_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/GoatButton"]
@@ -249,6 +252,7 @@ custom_minimum_size = Vector2(87, 84)
 layout_mode = 2
 size_flags_vertical = 12
 focus_mode = 0
+mouse_default_cursor_shape = 2
 icon_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/FermenterButton"]
@@ -265,6 +269,7 @@ custom_minimum_size = Vector2(87, 84)
 layout_mode = 2
 size_flags_vertical = 12
 focus_mode = 0
+mouse_default_cursor_shape = 2
 icon_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/LaborerButton"]
@@ -280,6 +285,7 @@ texture = ExtResource("12_r4wol")
 custom_minimum_size = Vector2(103, 136)
 layout_mode = 2
 focus_mode = 0
+mouse_default_cursor_shape = 2
 theme = SubResource("Theme_7uaaf")
 icon_alignment = 1
 

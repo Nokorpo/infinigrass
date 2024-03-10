@@ -7,6 +7,7 @@ var is_pulling := false
 var pulled_distance := 0.0
 var mouse_position_last_frame: Vector2
 var tween_scale
+var is_pulled := false ## True when grass finally pulled and ready to disappear
 
 func _input(event):
 	if !is_pulling and event is InputEventMouseMotion:

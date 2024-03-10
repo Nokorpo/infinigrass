@@ -33,7 +33,7 @@ func _input(event: InputEvent) -> void:
 				get_viewport().set_input_as_handled()
 
 func is_mouse_inside():
-	return $Sprite2D.get_rect().has_point(get_global_mouse_position())
+	return $Sprite2D.get_rect().has_point(to_local(get_global_mouse_position()))
 
 static func is_left_click(event: InputEvent):
 	return event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed

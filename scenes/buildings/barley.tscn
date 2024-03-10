@@ -1,22 +1,128 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3x4ux3esm5n4"]
+[gd_scene load_steps=12 format=3 uid="uid://d3x4ux3esm5n4"]
 
 [ext_resource type="Script" path="res://scenes/buildings/barley.gd" id="1_heyq3"]
-[ext_resource type="Texture2D" uid="uid://c3i4dxxjpouij" path="res://assets/sprites/barley.png" id="1_m23mb"]
-[ext_resource type="Texture2D" uid="uid://dypnv8magpd3" path="res://assets/sprites/barley_finished.png" id="2_wbeod"]
+[ext_resource type="Texture2D" uid="uid://15l3xknbdw5x" path="res://assets/sprites/ingame/barley.png" id="2_7c418"]
+[ext_resource type="Texture2D" uid="uid://bkosywp5cuhe" path="res://assets/sprites/ingame/barley_finished.png" id="3_jtcao"]
+[ext_resource type="Texture2D" uid="uid://cyhuc4iejm1pq" path="res://assets/sprites/ui/barley-icon.png" id="4_rll8r"]
+
+[sub_resource type="Animation" id="Animation_48bb6"]
+resource_name = "ready"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(0.75, 0.75)]
+}
+
+[sub_resource type="Animation" id="Animation_6x47e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.7, 0.7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aaw4k"]
+_data = {
+"RESET": SubResource("Animation_6x47e"),
+"ready": SubResource("Animation_48bb6")
+}
+
+[sub_resource type="Animation" id="Animation_20k8v"]
+resource_name = "idle"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [-0.0698132, 0.0698132]
+}
+
+[sub_resource type="Animation" id="Animation_cw2x6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ru6gc"]
+_data = {
+"RESET": SubResource("Animation_cw2x6"),
+"idle": SubResource("Animation_20k8v")
+}
+
+[sub_resource type="Curve" id="Curve_vmpsm"]
+_data = [Vector2(0, 0), 0.0, 23.8585, 0, 0, Vector2(0.11032, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Barley" type="Node2D"]
 script = ExtResource("1_heyq3")
-sprite_on_spawn = ExtResource("1_m23mb")
-sprite_on_completed = ExtResource("2_wbeod")
+sprite_on_spawn = ExtResource("2_7c418")
+sprite_on_completed = ExtResource("3_jtcao")
 resource = 1
 amount = 10
-time_until_done = 12.0
+time_until_done = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_m23mb")
-offset = Vector2(0, -30)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_7c418")
+offset = Vector2(-5, -55)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_aaw4k")
+}
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ru6gc")
+}
+autoplay = "idle"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 4
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.96
+texture = ExtResource("4_rll8r")
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 64.0
+initial_velocity_max = 64.0
+scale_amount_curve = SubResource("Curve_vmpsm")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

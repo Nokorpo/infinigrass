@@ -4,7 +4,11 @@ const GRASS = preload("res://scenes/grass/grass.tscn")
 var max_grass = 12
 
 func _on_timer_timeout():
-	if $Grasses.get_child_count() < max_grass:
+	var grass_count := 0
+	for child in $Grasses.get_children():
+		if child is Grass:
+			grass_count += 1
+	if grass_count < max_grass:
 		spawn_grass()
 
 func _ready():

@@ -12,6 +12,7 @@ signal instantiated
 
 var finished := false
 var is_instantiated := false
+var is_picked_up := false
 
 func _ready() -> void:
 	$Timer.start(time_until_done)
@@ -26,10 +27,13 @@ func _process(_delta):
 			modulate = Color("ffa092")
 
 func _on_timer_timeout() -> void:
+	$Sprite2D/AnimationPlayer.play("ready")
 	$Sprite2D.texture = sprite_on_completed
 	finished = true
 
 func _input(event: InputEvent) -> void:
+	if is_picked_up:
+		return
 	if !is_instantiated and Input.is_action_just_released("click"):
 		if can_be_placed():
 			$Timer.start()
@@ -41,7 +45,15 @@ func _input(event: InputEvent) -> void:
 	if finished and is_left_click(event) and is_mouse_inside():
 		ResourcesManager.add_resource(amount, resource)
 		get_viewport().set_input_as_handled()
-		queue_free()
+		pickup()
+
+func pickup():
+	is_picked_up = true
+	$CPUParticles2D.emitting = true
+	var tween: Tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property($Sprite2D, "modulate", Color("ffffff", 0), .2)
+	await get_tree().create_timer(1).timeout
+	queue_free()
 
 func can_be_placed():
 	if position.x > 775 or position.x < 25\

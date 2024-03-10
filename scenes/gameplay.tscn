@@ -1,12 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbw0iwo3tewe8"]
+[gd_scene load_steps=13 format=3 uid="uid://cbw0iwo3tewe8"]
 
 [ext_resource type="Script" path="res://scenes/grass/grass_spawner.gd" id="1_i14n6"]
 [ext_resource type="Script" path="res://scenes/upgrades_manager.gd" id="2_fwc41"]
-[ext_resource type="Texture2D" uid="uid://me7fh26novvq" path="res://assets/sprites/cesped.png" id="4_1d2mf"]
+[ext_resource type="Texture2D" uid="uid://uod7vfj75ubd" path="res://assets/sprites/cesped.png" id="4_1d2mf"]
 [ext_resource type="Script" path="res://scenes/ui/Coins.gd" id="4_327l3"]
+[ext_resource type="Texture2D" uid="uid://bykjeruv74rqc" path="res://assets/sprites/ui-base.png" id="5_7isst"]
+[ext_resource type="Texture2D" uid="uid://bks07o2y5tcx4" path="res://assets/sprites/button-1.png" id="6_4217a"]
+[ext_resource type="Texture2D" uid="uid://dhkra0ujyn21f" path="res://assets/sprites/button-2.png" id="7_136iw"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v423"]
-bg_color = Color(0.160784, 0.27451, 0.345098, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0axas"]
+texture = ExtResource("6_4217a")
+
+[sub_resource type="Theme" id="Theme_iduaq"]
+Button/styles/disabled = SubResource("StyleBoxTexture_0axas")
+Button/styles/hover = SubResource("StyleBoxTexture_0axas")
+Button/styles/normal = SubResource("StyleBoxTexture_0axas")
+Button/styles/pressed = SubResource("StyleBoxTexture_0axas")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6pw1s"]
+texture = ExtResource("7_136iw")
+
+[sub_resource type="Theme" id="Theme_7uaaf"]
+Button/styles/normal = SubResource("StyleBoxTexture_6pw1s")
+
+[sub_resource type="Theme" id="Theme_vx6h4"]
+Button/styles/normal = SubResource("StyleBoxTexture_6pw1s")
 
 [node name="Gameplay" type="Node2D"]
 
@@ -28,15 +46,6 @@ autostart = true
 [node name="Grasses" type="Node2D" parent="GrassSpawner"]
 y_sort_enabled = true
 
-[node name="Coins" type="Label" parent="."]
-offset_left = 19.0
-offset_top = 4.0
-offset_right = 59.0
-offset_bottom = 92.0
-theme_override_font_sizes/font_size = 64
-text = "0"
-script = ExtResource("4_327l3")
-
 [node name="BottomPanel" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -48,26 +57,78 @@ offset_bottom = 800.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="BottomPanel"]
+[node name="TextureRect" type="TextureRect" parent="BottomPanel"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -165.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8v423")
+grow_vertical = 0
+texture = ExtResource("5_7isst")
+
+[node name="Coins" type="Label" parent="BottomPanel"]
+offset_left = 290.0
+offset_top = -26.0
+offset_right = 347.0
+offset_bottom = 19.0
+theme_override_font_sizes/font_size = 32
+text = "0"
+script = ExtResource("4_327l3")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomPanel"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_top = -24.0
+offset_bottom = 112.0
+theme = SubResource("Theme_iduaq")
+theme_override_constants/separation = 30
+alignment = 1
 
 [node name="PrunerButton" type="Button" parent="BottomPanel/HBoxContainer"]
+custom_minimum_size = Vector2(103, 136)
 layout_mode = 2
+focus_mode = 0
+theme = SubResource("Theme_7uaaf")
 text = "Pruner"
+icon_alignment = 1
+
+[node name="BarleyButton" type="Button" parent="BottomPanel/HBoxContainer"]
+custom_minimum_size = Vector2(87, 84)
+layout_mode = 2
+size_flags_vertical = 12
+focus_mode = 0
+icon_alignment = 1
+
+[node name="GoatButton" type="Button" parent="BottomPanel/HBoxContainer"]
+custom_minimum_size = Vector2(87, 84)
+layout_mode = 2
+size_flags_vertical = 12
+focus_mode = 0
+icon_alignment = 1
+
+[node name="FermenterButton" type="Button" parent="BottomPanel/HBoxContainer"]
+custom_minimum_size = Vector2(87, 84)
+layout_mode = 2
+size_flags_vertical = 12
+focus_mode = 0
+icon_alignment = 1
+
+[node name="LaborerButton" type="Button" parent="BottomPanel/HBoxContainer"]
+custom_minimum_size = Vector2(87, 84)
+layout_mode = 2
+size_flags_vertical = 12
+focus_mode = 0
+icon_alignment = 1
+
+[node name="LaborerButton2" type="Button" parent="BottomPanel/HBoxContainer"]
+custom_minimum_size = Vector2(103, 136)
+layout_mode = 2
+focus_mode = 0
+theme = SubResource("Theme_vx6h4")
+icon_alignment = 1
 
 [connection signal="timeout" from="GrassSpawner/Timer" to="GrassSpawner" method="_on_timer_timeout"]
 [connection signal="pressed" from="BottomPanel/HBoxContainer/PrunerButton" to="UpgradesManager" method="_on_pruner_button_pressed"]

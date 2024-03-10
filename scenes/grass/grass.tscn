@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcxw7m4u42juy"]
+[gd_scene load_steps=8 format=3 uid="uid://dcxw7m4u42juy"]
 
 [ext_resource type="Texture2D" uid="uid://qapm100j3ec5" path="res://assets/sprites/grass.png" id="1_rprih"]
 [ext_resource type="Script" path="res://scenes/grass/grass.gd" id="2_hyds4"]
+[ext_resource type="Texture2D" uid="uid://d4hlx2pe4d8nl" path="res://assets/sprites/ui/coin.png" id="3_p0ohp"]
 
 [sub_resource type="Animation" id="Animation_8r5xn"]
 resource_name = "idle"
@@ -41,6 +42,10 @@ _data = {
 "idle": SubResource("Animation_8r5xn")
 }
 
+[sub_resource type="Curve" id="Curve_v45xa"]
+_data = [Vector2(0, 0), 0.0, 23.8585, 0, 0, Vector2(0.11032, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="Grass" type="Sprite2D"]
 rotation = -0.0872665
 texture = ExtResource("1_rprih")
@@ -52,3 +57,17 @@ libraries = {
 "": SubResource("AnimationLibrary_i8s84")
 }
 autoplay = "idle"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 4
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.96
+texture = ExtResource("3_p0ohp")
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 64.0
+initial_velocity_max = 64.0
+scale_amount_curve = SubResource("Curve_v45xa")

@@ -10,6 +10,8 @@ var tween_scale
 var is_pulled := false ## True when grass finally pulled and ready to disappear
 
 func _input(event):
+	if is_pulled:
+		return
 	if !is_pulling and event is InputEventMouseMotion:
 		event.position
 		if can_pull(event.position):
@@ -32,6 +34,8 @@ func _input(event):
 		scale.x = 1
 
 func _process(_delta):
+	if is_pulled:
+		return
 	if is_pulling:
 		var mouse_position := get_viewport().get_mouse_position()
 		var distance_this_frame: Vector2 = mouse_position_last_frame - mouse_position
@@ -48,7 +52,7 @@ func _process(_delta):
 		modulate.r = pulled_distance / target_pull_distance * 2
 		if pulled_distance > target_pull_distance:
 			pulled.emit()
-			queue_free()
+			_on_pulled()
 
 func can_pull(mouse_position: Vector2):
 	const PULL_MARGIN = 80
@@ -65,3 +69,11 @@ func _on_mouse_exited():
 		tween_scale.kill()
 	tween_scale = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween_scale.tween_property(self, "scale", Vector2(1, 1), .1)
+
+func _on_pulled():
+	is_pulled = true
+	$CPUParticles2D.emitting = true
+	var tween: Tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "self_modulate", Color("ffffff", 0), .2)
+	await get_tree().create_timer(1).timeout
+	queue_free()

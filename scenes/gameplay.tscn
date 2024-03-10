@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cbw0iwo3tewe8"]
+[gd_scene load_steps=37 format=3 uid="uid://cbw0iwo3tewe8"]
 
 [ext_resource type="Script" path="res://scenes/grass/grass_spawner.gd" id="1_i14n6"]
 [ext_resource type="Script" path="res://scenes/upgrades_manager.gd" id="2_fwc41"]
@@ -26,6 +26,9 @@
 [ext_resource type="AudioStream" uid="uid://dt6mglh0cvsmr" path="res://assets/sound/purchase.ogg" id="23_x245p"]
 [ext_resource type="AudioStream" uid="uid://4cifbxdt1rjy" path="res://assets/sound/accept.ogg" id="24_wu1f0"]
 [ext_resource type="AudioStream" uid="uid://bh11yapba75l1" path="res://assets/sound/cancel.ogg" id="25_fj4yu"]
+[ext_resource type="AudioStream" uid="uid://bir1rax7kbkql" path="res://assets/music/bg01.ogg" id="26_bwwci"]
+[ext_resource type="AudioStream" uid="uid://c1nwu3k3wgeo" path="res://assets/music/bg02.ogg" id="27_5r2jj"]
+[ext_resource type="AudioStream" uid="uid://ddaryhpy13fvg" path="res://assets/music/bg03.ogg" id="28_iuw2e"]
 
 [sub_resource type="Theme" id="Theme_l8mw1"]
 Label/font_sizes/font_size = 24
@@ -53,6 +56,16 @@ Button/styles/disabled = SubResource("StyleBoxTexture_6ack6")
 Button/styles/hover = SubResource("StyleBoxTexture_6pw1s")
 Button/styles/normal = SubResource("StyleBoxTexture_6pw1s")
 Button/styles/pressed = SubResource("StyleBoxTexture_6pw1s")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_afbeo"]
+playback_mode = 2
+streams_count = 3
+stream_0/stream = ExtResource("26_bwwci")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("27_5r2jj")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("28_iuw2e")
+stream_2/weight = 1.0
 
 [node name="Gameplay" type="Node2D"]
 
@@ -669,6 +682,11 @@ volume_db = -12.0
 unique_name_in_owner = true
 stream = ExtResource("25_fj4yu")
 volume_db = -12.0
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="SFX"]
+stream = SubResource("AudioStreamRandomizer_afbeo")
+volume_db = -16.0
+autoplay = true
 
 [connection signal="timeout" from="GrassSpawner/Timer" to="GrassSpawner" method="_on_timer_timeout"]
 [connection signal="mouse_entered" from="BottomPanel/Buttons/PrunerButton" to="BottomPanel/Buttons/PrunerButton" method="_on_mouse_entered"]

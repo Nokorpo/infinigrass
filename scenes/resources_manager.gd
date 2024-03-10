@@ -21,7 +21,7 @@ func add_resource(amount: int, resource_type: GameResourceType) -> void:
 		GameResourceType.BEER:
 			beer += amount
 			beer_changed.emit()
-	print("Add %d units of %s" % [amount, GameResourceType.keys()[resource_type]])
+	#print("Add %d units of %s" % [amount, GameResourceType.keys()[resource_type]])
 
 func subtract_resource(amount: int, resource_type: GameResourceType) -> void:
 	match resource_type:
@@ -34,4 +34,4 @@ func subtract_resource(amount: int, resource_type: GameResourceType) -> void:
 		GameResourceType.BEER:
 			beer -= amount
 			beer_changed.emit()
-	print("Subtract %d units of %s" % [amount, GameResourceType.keys()[resource_type]])
+	#print("Subtract %d units of %s" % [amount, GameResourceType.keys()[resource_type]])

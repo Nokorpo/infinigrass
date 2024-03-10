@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cbw0iwo3tewe8"]
+[gd_scene load_steps=27 format=3 uid="uid://cbw0iwo3tewe8"]
 
 [ext_resource type="Script" path="res://scenes/grass/grass_spawner.gd" id="1_i14n6"]
 [ext_resource type="Script" path="res://scenes/upgrades_manager.gd" id="2_fwc41"]
@@ -9,34 +9,43 @@
 [ext_resource type="Texture2D" uid="uid://d4hlx2pe4d8nl" path="res://assets/sprites/ui/coin.png" id="5_gl23d"]
 [ext_resource type="Texture2D" uid="uid://bugpxm81l68l2" path="res://assets/sprites/ui/button-1.png" id="6_1vt0o"]
 [ext_resource type="Texture2D" uid="uid://dgw7u3kamjlxt" path="res://assets/sprites/ui/button-2.png" id="7_coygi"]
-[ext_resource type="Texture2D" uid="uid://r8w82mdhrilg" path="res://assets/sprites/ui/scissors.png" id="8_al71x"]
+[ext_resource type="Texture2D" uid="uid://r8w82mdhrilg" path="res://assets/sprites/ui/pruner-1.png" id="8_al71x"]
 [ext_resource type="Texture2D" uid="uid://cyhuc4iejm1pq" path="res://assets/sprites/ui/barley-icon.png" id="8_ngo0u"]
 [ext_resource type="Texture2D" uid="uid://dptnm4kpan3u2" path="res://assets/sprites/ui/barley.png" id="9_vpnhb"]
 [ext_resource type="Texture2D" uid="uid://buk2k37wqb6ed" path="res://assets/sprites/ui/goat.png" id="10_fspom"]
+[ext_resource type="Texture2D" uid="uid://co48dcd4m3pc6" path="res://assets/sprites/ui/button-disabled.png" id="10_mrfvr"]
 [ext_resource type="Texture2D" uid="uid://1s0ibbf1undh" path="res://assets/sprites/ui/fermenter.png" id="11_73bhf"]
+[ext_resource type="Texture2D" uid="uid://gxgdcui82uyj" path="res://assets/sprites/ui/button-2-disabled.png" id="11_mtd0x"]
 [ext_resource type="Texture2D" uid="uid://bioe7rjfqqiq6" path="res://assets/sprites/ui/laborer.png" id="12_r4wol"]
+[ext_resource type="Script" path="res://scenes/ui/buy_upgrade_button.gd" id="13_q4axp"]
 [ext_resource type="Texture2D" uid="uid://5xpid2ufy6d0" path="res://assets/sprites/ui/poop.png" id="13_rsyjd"]
 
 [sub_resource type="Theme" id="Theme_l8mw1"]
 Label/font_sizes/font_size = 24
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o6n6h"]
+texture = ExtResource("10_mrfvr")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0axas"]
 texture = ExtResource("6_1vt0o")
 
 [sub_resource type="Theme" id="Theme_iduaq"]
-Button/styles/disabled = SubResource("StyleBoxTexture_0axas")
+Button/styles/disabled = SubResource("StyleBoxTexture_o6n6h")
 Button/styles/hover = SubResource("StyleBoxTexture_0axas")
 Button/styles/normal = SubResource("StyleBoxTexture_0axas")
 Button/styles/pressed = SubResource("StyleBoxTexture_0axas")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ack6"]
+texture = ExtResource("11_mtd0x")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6pw1s"]
 texture = ExtResource("7_coygi")
 
 [sub_resource type="Theme" id="Theme_7uaaf"]
+Button/styles/disabled = SubResource("StyleBoxTexture_6ack6")
+Button/styles/hover = SubResource("StyleBoxTexture_6pw1s")
 Button/styles/normal = SubResource("StyleBoxTexture_6pw1s")
-
-[sub_resource type="Theme" id="Theme_vx6h4"]
-Button/styles/normal = SubResource("StyleBoxTexture_6pw1s")
+Button/styles/pressed = SubResource("StyleBoxTexture_6pw1s")
 
 [node name="Gameplay" type="Node2D"]
 
@@ -137,11 +146,13 @@ theme_override_constants/separation = 30
 alignment = 1
 
 [node name="PrunerButton" type="Button" parent="BottomPanel/Buttons"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(103, 136)
 layout_mode = 2
 focus_mode = 0
 theme = SubResource("Theme_7uaaf")
 icon_alignment = 1
+script = ExtResource("13_q4axp")
 
 [node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/PrunerButton"]
 layout_mode = 1
@@ -233,7 +244,7 @@ texture = ExtResource("12_r4wol")
 custom_minimum_size = Vector2(103, 136)
 layout_mode = 2
 focus_mode = 0
-theme = SubResource("Theme_vx6h4")
+theme = SubResource("Theme_7uaaf")
 icon_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/FertilizerButton"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://r8w82mdhrilg"
-path="res://.godot/imported/scissors.png-43f83ab2efad32b3acbfe4a6cc28d607.ctex"
+uid="uid://gxgdcui82uyj"
+path="res://.godot/imported/button-2-disabled.png-0c1e77656801328848da14bb3982059b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/scissors.png"
-dest_files=["res://.godot/imported/scissors.png-43f83ab2efad32b3acbfe4a6cc28d607.ctex"]
+source_file="res://assets/sprites/ui/button-2-disabled.png"
+dest_files=["res://.godot/imported/button-2-disabled.png-0c1e77656801328848da14bb3982059b.ctex"]
 
 [params]
 

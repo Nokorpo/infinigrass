@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cbw0iwo3tewe8"]
+[gd_scene load_steps=28 format=3 uid="uid://cbw0iwo3tewe8"]
 
 [ext_resource type="Script" path="res://scenes/grass/grass_spawner.gd" id="1_i14n6"]
 [ext_resource type="Script" path="res://scenes/upgrades_manager.gd" id="2_fwc41"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://bioe7rjfqqiq6" path="res://assets/sprites/ui/laborer.png" id="12_r4wol"]
 [ext_resource type="Script" path="res://scenes/ui/buy_upgrade_button.gd" id="13_q4axp"]
 [ext_resource type="Texture2D" uid="uid://5xpid2ufy6d0" path="res://assets/sprites/ui/poop.png" id="13_rsyjd"]
+[ext_resource type="Texture2D" uid="uid://da8ncd03n4l27" path="res://assets/sprites/ui/tooltip-side.svg" id="15_wlhpw"]
 
 [sub_resource type="Theme" id="Theme_l8mw1"]
 Label/font_sizes/font_size = 24
@@ -169,6 +170,41 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_al71x")
 
+[node name="Tooltip" type="TextureRect" parent="BottomPanel/Buttons/PrunerButton"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -10.0
+offset_top = -114.0
+offset_right = 242.0
+offset_bottom = 31.0
+mouse_filter = 2
+texture = ExtResource("15_wlhpw")
+flip_h = true
+
+[node name="Label" type="Label" parent="BottomPanel/Buttons/PrunerButton/Tooltip"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -65.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.278431, 0.239216, 0.156863, 1)
+theme_override_font_sizes/font_size = 22
+text = "Podadora"
+
+[node name="Label2" type="Label" parent="BottomPanel/Buttons/PrunerButton/Tooltip"]
+offset_left = 15.0
+offset_top = 56.0
+offset_right = 237.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(0.564706, 0.407843, 0.0980392, 1)
+text = "Permite arrancar hierbas mas rápido"
+autowrap_mode = 2
+
 [node name="BarleyButton" type="Button" parent="BottomPanel/Buttons"]
 custom_minimum_size = Vector2(87, 84)
 layout_mode = 2
@@ -256,4 +292,6 @@ offset_bottom = 116.0
 texture = ExtResource("13_rsyjd")
 
 [connection signal="timeout" from="GrassSpawner/Timer" to="GrassSpawner" method="_on_timer_timeout"]
+[connection signal="mouse_entered" from="BottomPanel/Buttons/PrunerButton" to="BottomPanel/Buttons/PrunerButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="BottomPanel/Buttons/PrunerButton" to="BottomPanel/Buttons/PrunerButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="BottomPanel/Buttons/PrunerButton" to="UpgradesManager" method="_on_pruner_button_pressed"]

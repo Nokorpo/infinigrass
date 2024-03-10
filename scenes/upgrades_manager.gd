@@ -33,19 +33,19 @@ const FERTILIZER_DATA: Dictionary = {
 		"sprite": "res://assets/sprites/ui/poop-1.png"
 	},
 	1: {
-		"upgrade_cost": 20,
+		"upgrade_cost": 60,
 		"max_grass": 14,
 		"grass_cooldown": 1.2,
 		"sprite": "res://assets/sprites/ui/poop-2.png"
 	},
 	2: {
-		"upgrade_cost": 80,
+		"upgrade_cost": 110,
 		"max_grass": 20,
 		"grass_cooldown": 0.5,
 		"sprite": "res://assets/sprites/ui/poop-3.png"
 	},
 	3: {
-		"upgrade_cost": 160,
+		"upgrade_cost": 210,
 		"max_grass": 30,
 		"grass_cooldown": 0.1,
 		"sprite": "res://assets/sprites/ui/poop-4.png"
@@ -66,7 +66,8 @@ func upgrade_pruner():
 			%PrunerButton.is_upgrade_max = true
 		ResourcesManager.subtract_resource(cost, ResourcesManager.GameResourceType.MONEY)
 		for sibling in $"../GrassSpawner/Grasses".get_children():
-			sibling.target_pull_distance = get_current_pruner().target_pull_distance
+			if sibling is Grass:
+				sibling.target_pull_distance = get_current_pruner().target_pull_distance
 		
 		%PrunerButton/TextureRect.texture = load(get_current_pruner().sprite)
 

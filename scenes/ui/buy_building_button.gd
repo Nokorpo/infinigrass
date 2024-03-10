@@ -1,28 +1,19 @@
 extends Button
 
-@export var upgrade_type: UpgradesManager.UpgradeTypes
+@export_file("*.tscn") var gameplay_item
 @export var resource: ResourcesManager.GameResourceType
-var is_upgrade_max: bool
+@export var cost: int = 100
 var tooltip_tween: Tween
 
 func _ready():
 	on_resource_changed()
 	ResourcesManager.resource_changed.connect(on_resource_changed)
 
-func on_resource_changed():
-	if ResourcesManager.get_resource_quantity(resource) < get_current_cost()\
-		and !is_upgrade_max:
-		disabled = true
-		$TextureRect.modulate = Color(0, 0, 0, .6)
-	else:
-		disabled = false
-		$TextureRect.modulate = Color.WHITE
-
-func get_current_cost() -> int:
-	if upgrade_type == UpgradesManager.UpgradeTypes.PRUNER:
-		return %UpgradesManager.get_next_pruner().upgrade_cost
-	else:
-		return %UpgradesManager.get_next_fertilizer().upgrade_cost
+func _on_button_down():
+	if can_buy_item():
+		ResourcesManager.subtract_resource(cost, resource)
+		var this_item = load(gameplay_item).instantiate()
+		%Grasses.add_child(this_item)
 
 func _on_mouse_entered():
 	if tooltip_tween != null:
@@ -35,3 +26,14 @@ func _on_mouse_exited():
 		tooltip_tween.kill()
 	tooltip_tween = create_tween().set_trans(Tween.TRANS_SINE)
 	tooltip_tween.tween_property($Tooltip, "modulate", Color("ffffff", 0), .2)
+
+func on_resource_changed():
+	if can_buy_item():
+		disabled = false
+		$TextureRect.modulate = Color.WHITE
+	else:
+		disabled = true
+		$TextureRect.modulate = Color(0, 0, 0, .6)
+
+func can_buy_item():
+	return ResourcesManager.get_resource_quantity(resource) >= cost

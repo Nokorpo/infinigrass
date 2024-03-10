@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cbw0iwo3tewe8"]
+[gd_scene load_steps=30 format=3 uid="uid://cbw0iwo3tewe8"]
 
 [ext_resource type="Script" path="res://scenes/grass/grass_spawner.gd" id="1_i14n6"]
 [ext_resource type="Script" path="res://scenes/upgrades_manager.gd" id="2_fwc41"]
@@ -20,6 +20,8 @@
 [ext_resource type="Script" path="res://scenes/ui/buy_upgrade_button.gd" id="13_q4axp"]
 [ext_resource type="Texture2D" uid="uid://5xpid2ufy6d0" path="res://assets/sprites/ui/poop-1.png" id="13_rsyjd"]
 [ext_resource type="Texture2D" uid="uid://da8ncd03n4l27" path="res://assets/sprites/ui/tooltip-side.svg" id="15_wlhpw"]
+[ext_resource type="Script" path="res://scenes/ui/buy_building_button.gd" id="16_rxr47"]
+[ext_resource type="Texture2D" uid="uid://d3tpohvew2ed8" path="res://assets/sprites/ui/tooltip.svg" id="18_uk2c6"]
 
 [sub_resource type="Theme" id="Theme_l8mw1"]
 Label/font_sizes/font_size = 24
@@ -66,6 +68,7 @@ wait_time = 0.1
 autostart = true
 
 [node name="Grasses" type="Node2D" parent="GrassSpawner"]
+unique_name_in_owner = true
 y_sort_enabled = true
 
 [node name="BottomPanel" type="Control" parent="."]
@@ -214,6 +217,9 @@ size_flags_vertical = 12
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon_alignment = 1
+script = ExtResource("16_rxr47")
+gameplay_item = "res://scenes/buildings/barley.tscn"
+cost = 30
 
 [node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/BarleyButton"]
 layout_mode = 1
@@ -230,6 +236,41 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("9_vpnhb")
+
+[node name="Tooltip" type="TextureRect" parent="BottomPanel/Buttons/BarleyButton"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -86.0
+offset_top = -132.0
+offset_right = 173.0
+offset_bottom = 20.0
+mouse_filter = 2
+texture = ExtResource("18_uk2c6")
+flip_h = true
+
+[node name="Label" type="Label" parent="BottomPanel/Buttons/BarleyButton/Tooltip"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -65.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.278431, 0.239216, 0.156863, 1)
+theme_override_font_sizes/font_size = 22
+text = "Cebada"
+
+[node name="Label2" type="Label" parent="BottomPanel/Buttons/BarleyButton/Tooltip"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 56.0
+offset_right = 237.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(0.564706, 0.407843, 0.0980392, 1)
+text = "Plantala para conseguir cebada"
+autowrap_mode = 2
 
 [node name="GoatButton" type="Button" parent="BottomPanel/Buttons"]
 custom_minimum_size = Vector2(87, 84)
@@ -340,6 +381,9 @@ autowrap_mode = 2
 [connection signal="mouse_entered" from="BottomPanel/Buttons/PrunerButton" to="BottomPanel/Buttons/PrunerButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="BottomPanel/Buttons/PrunerButton" to="BottomPanel/Buttons/PrunerButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="BottomPanel/Buttons/PrunerButton" to="UpgradesManager" method="_on_pruner_button_pressed"]
+[connection signal="button_down" from="BottomPanel/Buttons/BarleyButton" to="BottomPanel/Buttons/BarleyButton" method="_on_button_down"]
+[connection signal="mouse_entered" from="BottomPanel/Buttons/BarleyButton" to="BottomPanel/Buttons/BarleyButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="BottomPanel/Buttons/BarleyButton" to="BottomPanel/Buttons/BarleyButton" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="BottomPanel/Buttons/FertilizerButton" to="BottomPanel/Buttons/FertilizerButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="BottomPanel/Buttons/FertilizerButton" to="BottomPanel/Buttons/FertilizerButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="BottomPanel/Buttons/FertilizerButton" to="UpgradesManager" method="upgrade_fertilizer"]

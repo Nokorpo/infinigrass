@@ -10,6 +10,7 @@ func _ready() -> void:
 			ResourcesManager.barley_changed.connect(update_text)
 		ResourcesManager.GameResourceType.BEER:
 			ResourcesManager.beer_changed.connect(update_text)
+	update_text()
 
 func update_text() -> void:
 	text = str(get_resource_data())

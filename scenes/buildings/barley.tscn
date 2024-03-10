@@ -10,9 +10,11 @@ sprite_on_spawn = ExtResource("1_m23mb")
 sprite_on_completed = ExtResource("2_wbeod")
 resource = 1
 amount = 10
+time_until_done = 12.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_m23mb")
+offset = Vector2(0, -30)
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

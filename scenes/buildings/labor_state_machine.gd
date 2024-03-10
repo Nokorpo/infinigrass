@@ -41,10 +41,12 @@ func _input(event: InputEvent) -> void:
 	if is_left_click(event) and is_mouse_inside():
 		match state:
 			LaborStates.IDLE:
-				ResourcesManager.add_resource(recharge_amount, recharge_resource)
-				$Timer.start(time_until_done)
-				$Sprite2D.texture = sprite_on_working
-				get_viewport().set_input_as_handled()
+				if ResourcesManager.get_resource_quantity(recharge_resource) >= recharge_amount:
+					ResourcesManager.subtract_resource(recharge_amount, recharge_resource)
+					state = LaborStates.WORKING
+					$Timer.start(time_until_done)
+					$Sprite2D.texture = sprite_on_working
+					get_viewport().set_input_as_handled()
 			LaborStates.DONE:
 				ResourcesManager.add_resource(amount, resource)
 				state = LaborStates.IDLE

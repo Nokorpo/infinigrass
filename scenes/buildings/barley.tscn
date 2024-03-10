@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://d3x4ux3esm5n4"]
+[gd_scene load_steps=13 format=3 uid="uid://d3x4ux3esm5n4"]
 
 [ext_resource type="Script" path="res://scenes/buildings/barley.gd" id="1_heyq3"]
 [ext_resource type="Texture2D" uid="uid://15l3xknbdw5x" path="res://assets/sprites/ingame/barley.png" id="2_7c418"]
 [ext_resource type="Texture2D" uid="uid://bkosywp5cuhe" path="res://assets/sprites/ingame/barley_finished.png" id="3_jtcao"]
+[ext_resource type="Texture2D" uid="uid://bjwpy82a1w767" path="res://assets/sprites/shadow.png" id="4_aggaw"]
 [ext_resource type="Texture2D" uid="uid://cyhuc4iejm1pq" path="res://assets/sprites/ui/barley-icon.png" id="4_rll8r"]
 
 [sub_resource type="Animation" id="Animation_48bb6"]
@@ -91,6 +92,12 @@ sprite_on_completed = ExtResource("3_jtcao")
 resource = 1
 amount = 10
 time_until_done = 5.0
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 4)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_aggaw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.7, 0.7)

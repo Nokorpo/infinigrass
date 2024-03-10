@@ -57,6 +57,7 @@ unique_name_in_owner = true
 script = ExtResource("2_fwc41")
 
 [node name="Background" type="Sprite2D" parent="."]
+z_index = -10
 position = Vector2(400, 400)
 texture = ExtResource("4_1d2mf")
 

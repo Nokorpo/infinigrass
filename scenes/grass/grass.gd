@@ -1,7 +1,9 @@
-extends Sprite2D
+extends Node2D
 class_name Grass
 
 signal pulled
+
+@onready var grass = $Grass
 
 var target_pull_distance = 2400
 var is_pulling := false
@@ -12,8 +14,8 @@ var is_pulled := false ## True when grass finally pulled and ready to disappear
 
 func _ready():
 	scale = Vector2(0,0)
-	tween_scale = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
-	tween_scale.tween_property(self, "scale", Vector2(1, 1), 1)
+	var tween = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "scale", Vector2(1, 1), 1)
 
 func _input(event):
 	if is_pulled:
@@ -29,14 +31,14 @@ func _input(event):
 			is_pulling = true
 			pulled_distance = 0.0
 			mouse_position_last_frame = mouse_positon
-			$AnimationPlayer.stop()
+			$Grass/AnimationPlayer.stop()
 	elif Input.is_action_just_released("click"):
-		$AnimationPlayer.play("idle", 100)
+		$Grass/AnimationPlayer.play("idle", 100)
 		is_pulling = false
-		modulate.r = 1
+		grass.modulate.r = 1
 		#rotation = 0
-		scale.y = 1
-		scale.x = 1
+		grass.scale.y = 1
+		grass.scale.x = 1
 
 func _process(_delta):
 	if is_pulled:
@@ -48,13 +50,13 @@ func _process(_delta):
 		mouse_position_last_frame = mouse_position
 		
 		var horizontal_distance_to_mouse := mouse_position.x - position.x
-		rotation = clamp(horizontal_distance_to_mouse / 400, -1.3, 1.3)
+		grass.rotation = clamp(horizontal_distance_to_mouse / 400, -1.3, 1.3)
 		
 		var distance_to_mouse :=  mouse_position - position
-		scale.y = clamp(.5 + distance_to_mouse.length() / 200, .5, 2)
-		scale.x = clamp(1 - distance_to_mouse.length() / 500, .2, 3)
+		grass.scale.y = clamp(.5 + distance_to_mouse.length() / 200, .5, 2)
+		grass.scale.x = clamp(1 - distance_to_mouse.length() / 500, .2, 3)
 		
-		modulate.r = pulled_distance / target_pull_distance * 2
+		grass.modulate.r = pulled_distance / target_pull_distance * 2
 		if pulled_distance > target_pull_distance:
 			pulled.emit()
 			_on_pulled()
@@ -67,18 +69,19 @@ func _on_mouse_entered():
 	if tween_scale != null:
 		tween_scale.kill()
 	tween_scale = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween_scale.tween_property(self, "scale", Vector2(1.1, 1.1), .05)
+	tween_scale.tween_property(grass, "scale", Vector2(1.1, 1.1), .05)
 
 func _on_mouse_exited():
 	if tween_scale != null:
 		tween_scale.kill()
 	tween_scale = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween_scale.tween_property(self, "scale", Vector2(1, 1), .1)
+	tween_scale.tween_property(grass, "scale", Vector2(1, 1), .1)
 
 func _on_pulled():
 	is_pulled = true
 	$CPUParticles2D.emitting = true
 	var tween: Tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "self_modulate", Color("ffffff", 0), .2)
+	tween.tween_property(grass, "self_modulate", Color("ffffff", 0), .2)
+	tween.tween_property($Shadow, "self_modulate", Color("ffffff", 0), .2)
 	await get_tree().create_timer(1).timeout
 	queue_free()

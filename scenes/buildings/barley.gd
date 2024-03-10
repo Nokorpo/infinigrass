@@ -52,6 +52,7 @@ func pickup():
 	$CPUParticles2D.emitting = true
 	var tween: Tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property($Sprite2D, "modulate", Color("ffffff", 0), .2)
+	tween.tween_property($Shadow, "modulate", Color("ffffff", 0), .2)
 	await get_tree().create_timer(1).timeout
 	queue_free()
 

@@ -11,9 +11,12 @@ func _ready():
 
 func _on_button_down():
 	if can_buy_item():
-		ResourcesManager.subtract_resource(cost, resource)
 		var this_item = load(gameplay_item).instantiate()
 		%Grasses.add_child(this_item)
+		this_item.instantiated.connect(_on_item_instantiated)
+
+func _on_item_instantiated():
+	ResourcesManager.subtract_resource(cost, resource)
 
 func _on_mouse_entered():
 	if tooltip_tween != null:

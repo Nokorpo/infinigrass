@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://uod7vfj75ubd" path="res://assets/sprites/cesped.png" id="4_1d2mf"]
 [ext_resource type="Script" path="res://scenes/ui/resource_label.gd" id="4_327l3"]
 [ext_resource type="Texture2D" uid="uid://cbgjul6kc0be0" path="res://assets/sprites/ui/beer.png" id="5_4x15k"]
-[ext_resource type="Texture2D" uid="uid://bykjeruv74rqc" path="res://assets/sprites/ui-base.png" id="5_7isst"]
+[ext_resource type="Texture2D" uid="uid://djh77bcb8mttk" path="res://assets/sprites/ui/ui-base.png" id="5_7isst"]
 [ext_resource type="Texture2D" uid="uid://d4hlx2pe4d8nl" path="res://assets/sprites/ui/coin.png" id="5_gl23d"]
 [ext_resource type="Texture2D" uid="uid://bugpxm81l68l2" path="res://assets/sprites/ui/button-1.png" id="6_1vt0o"]
 [ext_resource type="Texture2D" uid="uid://dgw7u3kamjlxt" path="res://assets/sprites/ui/button-2.png" id="7_coygi"]

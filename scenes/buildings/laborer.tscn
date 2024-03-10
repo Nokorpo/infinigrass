@@ -16,7 +16,9 @@ time_until_done = 15.0
 recharge_resource = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_c3lsr")
+offset = Vector2(0, -60)
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

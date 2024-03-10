@@ -19,6 +19,7 @@ recharge_amount = 20
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_knpb7")
+offset = Vector2(0, -50)
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

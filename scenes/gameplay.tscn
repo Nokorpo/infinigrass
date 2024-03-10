@@ -239,6 +239,7 @@ texture = ExtResource("9_vpnhb")
 
 [node name="Tooltip" type="TextureRect" parent="BottomPanel/Buttons/BarleyButton"]
 modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = -86.0
 offset_top = -132.0
 offset_right = 173.0
@@ -295,6 +296,7 @@ texture = ExtResource("10_fspom")
 
 [node name="Tooltip" type="TextureRect" parent="BottomPanel/Buttons/GoatButton"]
 modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = -86.0
 offset_top = -132.0
 offset_right = 173.0
@@ -350,6 +352,7 @@ texture = ExtResource("11_73bhf")
 
 [node name="Tooltip" type="TextureRect" parent="BottomPanel/Buttons/FermenterButton"]
 modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = -86.0
 offset_top = -132.0
 offset_right = 173.0
@@ -384,6 +387,7 @@ text = "Fermenta tu cebada para hacer cerveza"
 autowrap_mode = 2
 
 [node name="LaborerButton" type="Button" parent="BottomPanel/Buttons"]
+z_index = 1
 custom_minimum_size = Vector2(87, 84)
 layout_mode = 2
 size_flags_vertical = 12
@@ -391,6 +395,7 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 icon_alignment = 1
 script = ExtResource("16_rxr47")
+gameplay_item = "res://scenes/buildings/laborer.tscn"
 
 [node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/LaborerButton"]
 layout_mode = 0
@@ -400,6 +405,42 @@ offset_right = 89.0
 offset_bottom = 90.0
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("12_r4wol")
+
+[node name="Tooltip" type="TextureRect" parent="BottomPanel/Buttons/LaborerButton"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -86.0
+offset_top = -132.0
+offset_right = 173.0
+offset_bottom = 20.0
+mouse_filter = 2
+texture = ExtResource("18_uk2c6")
+flip_h = true
+
+[node name="Label" type="Label" parent="BottomPanel/Buttons/LaborerButton/Tooltip"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -65.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.278431, 0.239216, 0.156863, 1)
+theme_override_font_sizes/font_size = 22
+text = "Jornalero"
+
+[node name="Label2" type="Label" parent="BottomPanel/Buttons/LaborerButton/Tooltip"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 56.0
+offset_right = 237.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(0.564706, 0.407843, 0.0980392, 1)
+text = "A cambio de cerveza, recoge cebada por ti"
+autowrap_mode = 2
 
 [node name="FertilizerButton" type="Button" parent="BottomPanel/Buttons"]
 unique_name_in_owner = true
@@ -468,6 +509,9 @@ autowrap_mode = 2
 [connection signal="button_down" from="BottomPanel/Buttons/FermenterButton" to="BottomPanel/Buttons/FermenterButton" method="_on_button_down"]
 [connection signal="mouse_entered" from="BottomPanel/Buttons/FermenterButton" to="BottomPanel/Buttons/FermenterButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="BottomPanel/Buttons/FermenterButton" to="BottomPanel/Buttons/FermenterButton" method="_on_mouse_exited"]
+[connection signal="button_down" from="BottomPanel/Buttons/LaborerButton" to="BottomPanel/Buttons/LaborerButton" method="_on_button_down"]
+[connection signal="mouse_entered" from="BottomPanel/Buttons/LaborerButton" to="BottomPanel/Buttons/LaborerButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="BottomPanel/Buttons/LaborerButton" to="BottomPanel/Buttons/LaborerButton" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="BottomPanel/Buttons/FertilizerButton" to="BottomPanel/Buttons/FertilizerButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="BottomPanel/Buttons/FertilizerButton" to="BottomPanel/Buttons/FertilizerButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="BottomPanel/Buttons/FertilizerButton" to="UpgradesManager" method="upgrade_fertilizer"]

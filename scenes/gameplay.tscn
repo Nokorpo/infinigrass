@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://gxgdcui82uyj" path="res://assets/sprites/ui/button-2-disabled.png" id="11_mtd0x"]
 [ext_resource type="Texture2D" uid="uid://bioe7rjfqqiq6" path="res://assets/sprites/ui/laborer.png" id="12_r4wol"]
 [ext_resource type="Script" path="res://scenes/ui/buy_upgrade_button.gd" id="13_q4axp"]
-[ext_resource type="Texture2D" uid="uid://5xpid2ufy6d0" path="res://assets/sprites/ui/poop-1.png" id="13_rsyjd"]
+[ext_resource type="Texture2D" uid="uid://bx2kr08g4wxij" path="res://assets/sprites/ui/poop.png" id="13_rsyjd"]
 [ext_resource type="Texture2D" uid="uid://da8ncd03n4l27" path="res://assets/sprites/ui/tooltip-side.svg" id="15_wlhpw"]
 [ext_resource type="Script" path="res://scenes/ui/buy_building_button.gd" id="16_rxr47"]
 [ext_resource type="Texture2D" uid="uid://d3tpohvew2ed8" path="res://assets/sprites/ui/tooltip.svg" id="18_uk2c6"]
@@ -384,7 +384,7 @@ offset_top = 56.0
 offset_right = 237.0
 offset_bottom = 106.0
 theme_override_colors/font_color = Color(0.564706, 0.407843, 0.0980392, 1)
-text = "Fermenta tu cebada para hacer cerveza"
+text = "Cargalo de cebada para hacer cerveza"
 autowrap_mode = 2
 
 [node name="LaborerButton" type="Button" parent="BottomPanel/Buttons"]
@@ -456,10 +456,10 @@ upgrade_type = 1
 
 [node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/FertilizerButton"]
 layout_mode = 0
-offset_left = -1.0
-offset_top = 42.0
-offset_right = 102.0
-offset_bottom = 115.0
+offset_left = -2.0
+offset_top = 28.0
+offset_right = 101.0
+offset_bottom = 116.0
 texture = ExtResource("13_rsyjd")
 
 [node name="Tooltip" type="TextureRect" parent="BottomPanel/Buttons/FertilizerButton"]

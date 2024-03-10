@@ -1,9 +1,54 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcxw7m4u42juy"]
+[gd_scene load_steps=6 format=3 uid="uid://dcxw7m4u42juy"]
 
 [ext_resource type="Texture2D" uid="uid://qapm100j3ec5" path="res://assets/sprites/grass.png" id="1_rprih"]
 [ext_resource type="Script" path="res://scenes/grass/grass.gd" id="2_hyds4"]
 
+[sub_resource type="Animation" id="Animation_8r5xn"]
+resource_name = "idle"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [-0.0698132, 0.0698132]
+}
+
+[sub_resource type="Animation" id="Animation_50rn5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.0872665]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i8s84"]
+_data = {
+"RESET": SubResource("Animation_50rn5"),
+"idle": SubResource("Animation_8r5xn")
+}
+
 [node name="Grass" type="Sprite2D"]
+rotation = -0.0872665
 texture = ExtResource("1_rprih")
-offset = Vector2(0, -15)
+offset = Vector2(0, -18)
 script = ExtResource("2_hyds4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i8s84")
+}
+autoplay = "idle"

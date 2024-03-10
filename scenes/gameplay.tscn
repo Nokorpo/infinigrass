@@ -1,15 +1,27 @@
-[gd_scene load_steps=13 format=3 uid="uid://cbw0iwo3tewe8"]
+[gd_scene load_steps=23 format=3 uid="uid://cbw0iwo3tewe8"]
 
 [ext_resource type="Script" path="res://scenes/grass/grass_spawner.gd" id="1_i14n6"]
 [ext_resource type="Script" path="res://scenes/upgrades_manager.gd" id="2_fwc41"]
 [ext_resource type="Texture2D" uid="uid://uod7vfj75ubd" path="res://assets/sprites/cesped.png" id="4_1d2mf"]
-[ext_resource type="Script" path="res://scenes/ui/Coins.gd" id="4_327l3"]
+[ext_resource type="Script" path="res://scenes/ui/resource_label.gd" id="4_327l3"]
+[ext_resource type="Texture2D" uid="uid://cbgjul6kc0be0" path="res://assets/sprites/ui/beer.png" id="5_4x15k"]
 [ext_resource type="Texture2D" uid="uid://bykjeruv74rqc" path="res://assets/sprites/ui-base.png" id="5_7isst"]
-[ext_resource type="Texture2D" uid="uid://bks07o2y5tcx4" path="res://assets/sprites/button-1.png" id="6_4217a"]
-[ext_resource type="Texture2D" uid="uid://dhkra0ujyn21f" path="res://assets/sprites/button-2.png" id="7_136iw"]
+[ext_resource type="Texture2D" uid="uid://d4hlx2pe4d8nl" path="res://assets/sprites/ui/coin.png" id="5_gl23d"]
+[ext_resource type="Texture2D" uid="uid://bugpxm81l68l2" path="res://assets/sprites/ui/button-1.png" id="6_1vt0o"]
+[ext_resource type="Texture2D" uid="uid://dgw7u3kamjlxt" path="res://assets/sprites/ui/button-2.png" id="7_coygi"]
+[ext_resource type="Texture2D" uid="uid://r8w82mdhrilg" path="res://assets/sprites/ui/scissors.png" id="8_al71x"]
+[ext_resource type="Texture2D" uid="uid://cyhuc4iejm1pq" path="res://assets/sprites/ui/barley-icon.png" id="8_ngo0u"]
+[ext_resource type="Texture2D" uid="uid://dptnm4kpan3u2" path="res://assets/sprites/ui/barley.png" id="9_vpnhb"]
+[ext_resource type="Texture2D" uid="uid://buk2k37wqb6ed" path="res://assets/sprites/ui/goat.png" id="10_fspom"]
+[ext_resource type="Texture2D" uid="uid://1s0ibbf1undh" path="res://assets/sprites/ui/fermenter.png" id="11_73bhf"]
+[ext_resource type="Texture2D" uid="uid://bioe7rjfqqiq6" path="res://assets/sprites/ui/laborer.png" id="12_r4wol"]
+[ext_resource type="Texture2D" uid="uid://5xpid2ufy6d0" path="res://assets/sprites/ui/poop.png" id="13_rsyjd"]
+
+[sub_resource type="Theme" id="Theme_l8mw1"]
+Label/font_sizes/font_size = 24
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0axas"]
-texture = ExtResource("6_4217a")
+texture = ExtResource("6_1vt0o")
 
 [sub_resource type="Theme" id="Theme_iduaq"]
 Button/styles/disabled = SubResource("StyleBoxTexture_0axas")
@@ -18,7 +30,7 @@ Button/styles/normal = SubResource("StyleBoxTexture_0axas")
 Button/styles/pressed = SubResource("StyleBoxTexture_0axas")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6pw1s"]
-texture = ExtResource("7_136iw")
+texture = ExtResource("7_coygi")
 
 [sub_resource type="Theme" id="Theme_7uaaf"]
 Button/styles/normal = SubResource("StyleBoxTexture_6pw1s")
@@ -68,16 +80,53 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("5_7isst")
 
-[node name="Coins" type="Label" parent="BottomPanel"]
-offset_left = 290.0
-offset_top = -26.0
-offset_right = 347.0
-offset_bottom = 19.0
-theme_override_font_sizes/font_size = 32
-text = "0"
+[node name="Resources" type="HBoxContainer" parent="BottomPanel"]
+layout_mode = 0
+offset_left = 260.0
+offset_top = -28.0
+offset_right = 300.0
+offset_bottom = 12.0
+theme = SubResource("Theme_l8mw1")
+
+[node name="CoinsIcon" type="TextureRect" parent="BottomPanel/Resources"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("5_gl23d")
+
+[node name="Coins" type="Label" parent="BottomPanel/Resources"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "0	"
 script = ExtResource("4_327l3")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomPanel"]
+[node name="BarleyIcon" type="TextureRect" parent="BottomPanel/Resources"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("8_ngo0u")
+
+[node name="Barley" type="Label" parent="BottomPanel/Resources"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "0"
+script = ExtResource("4_327l3")
+resource = 1
+
+[node name="BeerIcon" type="TextureRect" parent="BottomPanel/Resources"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("5_4x15k")
+
+[node name="Beers" type="Label" parent="BottomPanel/Resources"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "0"
+script = ExtResource("4_327l3")
+resource = 2
+
+[node name="Buttons" type="HBoxContainer" parent="BottomPanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -87,48 +136,113 @@ theme = SubResource("Theme_iduaq")
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="PrunerButton" type="Button" parent="BottomPanel/HBoxContainer"]
+[node name="PrunerButton" type="Button" parent="BottomPanel/Buttons"]
 custom_minimum_size = Vector2(103, 136)
 layout_mode = 2
 focus_mode = 0
 theme = SubResource("Theme_7uaaf")
-text = "Pruner"
 icon_alignment = 1
 
-[node name="BarleyButton" type="Button" parent="BottomPanel/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/PrunerButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -27.0
+offset_right = 37.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_al71x")
+
+[node name="BarleyButton" type="Button" parent="BottomPanel/Buttons"]
 custom_minimum_size = Vector2(87, 84)
 layout_mode = 2
 size_flags_vertical = 12
 focus_mode = 0
 icon_alignment = 1
 
-[node name="GoatButton" type="Button" parent="BottomPanel/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/BarleyButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.5
+offset_top = -31.0
+offset_right = 46.5
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("9_vpnhb")
+
+[node name="GoatButton" type="Button" parent="BottomPanel/Buttons"]
 custom_minimum_size = Vector2(87, 84)
 layout_mode = 2
 size_flags_vertical = 12
 focus_mode = 0
 icon_alignment = 1
 
-[node name="FermenterButton" type="Button" parent="BottomPanel/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/GoatButton"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 93.0
+offset_bottom = 89.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("10_fspom")
+
+[node name="FermenterButton" type="Button" parent="BottomPanel/Buttons"]
 custom_minimum_size = Vector2(87, 84)
 layout_mode = 2
 size_flags_vertical = 12
 focus_mode = 0
 icon_alignment = 1
 
-[node name="LaborerButton" type="Button" parent="BottomPanel/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/FermenterButton"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 13.0
+offset_right = 81.0
+offset_bottom = 84.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("11_73bhf")
+
+[node name="LaborerButton" type="Button" parent="BottomPanel/Buttons"]
 custom_minimum_size = Vector2(87, 84)
 layout_mode = 2
 size_flags_vertical = 12
 focus_mode = 0
 icon_alignment = 1
 
-[node name="LaborerButton2" type="Button" parent="BottomPanel/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/LaborerButton"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 13.0
+offset_right = 89.0
+offset_bottom = 90.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("12_r4wol")
+
+[node name="FertilizerButton" type="Button" parent="BottomPanel/Buttons"]
 custom_minimum_size = Vector2(103, 136)
 layout_mode = 2
 focus_mode = 0
 theme = SubResource("Theme_vx6h4")
 icon_alignment = 1
 
+[node name="TextureRect" type="TextureRect" parent="BottomPanel/Buttons/FertilizerButton"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 59.0
+offset_right = 82.0
+offset_bottom = 116.0
+texture = ExtResource("13_rsyjd")
+
 [connection signal="timeout" from="GrassSpawner/Timer" to="GrassSpawner" method="_on_timer_timeout"]
-[connection signal="pressed" from="BottomPanel/HBoxContainer/PrunerButton" to="UpgradesManager" method="_on_pruner_button_pressed"]
+[connection signal="pressed" from="BottomPanel/Buttons/PrunerButton" to="UpgradesManager" method="_on_pruner_button_pressed"]

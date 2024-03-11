@@ -1,8 +1,102 @@
-[gd_scene load_steps=4 format=3 uid="uid://dj0187a52mapk"]
+[gd_scene load_steps=20 format=3 uid="uid://dj0187a52mapk"]
 
 [ext_resource type="Script" path="res://scenes/ui/change_scene_on_click.gd" id="1_x4mu5"]
 [ext_resource type="PackedScene" uid="uid://cbw0iwo3tewe8" path="res://scenes/gameplay.tscn" id="2_6fnf0"]
+[ext_resource type="Texture2D" uid="uid://bbasui2d55wmv" path="res://assets/sprites/menu/menu_grass.png" id="2_krvil"]
+[ext_resource type="Texture2D" uid="uid://rsr65w65f663" path="res://assets/sprites/ingame/star_1.png" id="2_mfstl"]
 [ext_resource type="PackedScene" uid="uid://dv3kfiw88cwed" path="res://scenes/ui/curtain.tscn" id="3_luodm"]
+[ext_resource type="Texture2D" uid="uid://dslmpckc0erp5" path="res://assets/sprites/menu/menu_laborer.png" id="3_wk2n6"]
+[ext_resource type="Texture2D" uid="uid://d21l3mhoeckph" path="res://assets/sprites/menu/background.png" id="4_ey3sf"]
+[ext_resource type="Texture2D" uid="uid://bmq2tywuohcu7" path="res://assets/sprites/menu/menu_logo.png" id="4_lluwr"]
+[ext_resource type="Texture2D" uid="uid://dx6tnj0i12aco" path="res://assets/sprites/menu/beer.png" id="5_vhbhm"]
+[ext_resource type="Texture2D" uid="uid://crgu5wbidm348" path="res://assets/sprites/menu/heart.png" id="6_dv0xd"]
+
+[sub_resource type="Curve" id="Curve_vrsp8"]
+_data = [Vector2(0, 0), 0.0, 19.5019, 0, 0, Vector2(0.110169, 1), -0.101294, -0.101294, 0, 0, Vector2(0.817797, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -14.6279, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_lea0a"]
+offsets = PackedFloat32Array(0, 0.515351, 1)
+colors = PackedColorArray(1, 1, 0.26, 1, 1, 1, 1, 1, 0.733333, 0.831373, 0.580392, 1)
+
+[sub_resource type="Animation" id="Animation_s44jc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4gkrr"]
+resource_name = "idle"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [-0.0174533, 0.0174533]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kaxi5"]
+_data = {
+"RESET": SubResource("Animation_s44jc"),
+"idle": SubResource("Animation_4gkrr")
+}
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dsvfr"]
+texture = ExtResource("5_vhbhm")
+
+[sub_resource type="Animation" id="Animation_b7ued"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_g0i24"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 1.05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v0057"]
+_data = {
+"RESET": SubResource("Animation_b7ued"),
+"idle": SubResource("Animation_g0i24")
+}
 
 [node name="GameStart" type="Control"]
 layout_mode = 3
@@ -12,15 +106,114 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 800.0
+texture = ExtResource("4_ey3sf")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(394, 818)
+amount = 18
+lifetime = 25.0
+preprocess = 16.0
+texture = ExtResource("2_mfstl")
+emission_shape = 3
+emission_rect_extents = Vector2(300, 1)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 40.0
+angular_velocity_min = -45.0
+angular_velocity_max = 45.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_vrsp8")
+color_ramp = SubResource("Gradient_lea0a")
+
+[node name="Grass" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 800.0
+texture = ExtResource("2_krvil")
+
+[node name="Laborer" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 231.0
+offset_top = 287.0
+offset_right = 870.0
+offset_bottom = 873.0
+pivot_offset = Vector2(293, 586)
+texture = ExtResource("3_wk2n6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Laborer"]
+libraries = {
+"": SubResource("AnimationLibrary_kaxi5")
+}
+autoplay = "idle"
+
+[node name="Heart" type="TextureRect" parent="Laborer"]
+visible = false
+layout_mode = 0
+offset_left = 152.0
+offset_top = 11.0
+offset_right = 242.0
+offset_bottom = 103.0
+rotation = -0.0174533
+pivot_offset = Vector2(45, 45)
+texture = ExtResource("6_dv0xd")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Laborer"]
+position = Vector2(202.427, 102.346)
+amount = 1
+lifetime = 10.0
+preprocess = 16.0
+texture = ExtResource("6_dv0xd")
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+angular_velocity_min = -1.0
+angular_velocity_max = 1.0
+scale_amount_min = 0.2
+scale_amount_curve = SubResource("Curve_vrsp8")
+color_ramp = SubResource("Gradient_lea0a")
+
+[node name="Logo" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 72.0
+offset_right = 784.0
+offset_bottom = 268.0
+pivot_offset = Vector2(372, 98)
+texture = ExtResource("4_lluwr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Logo"]
+libraries = {
+"": SubResource("AnimationLibrary_kaxi5")
+}
+autoplay = "idle"
+
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 299.0
-offset_top = 192.0
-offset_right = 505.0
-offset_bottom = 299.0
-text = "Empezar el juego"
+offset_left = 23.0
+offset_top = 342.0
+offset_right = 343.4
+offset_bottom = 729.6
+pivot_offset = Vector2(160.2, 193.8)
+tooltip_text = "Play"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_dsvfr")
+theme_override_styles/hover = SubResource("StyleBoxTexture_dsvfr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dsvfr")
 script = ExtResource("1_x4mu5")
 scene = ExtResource("2_6fnf0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Button"]
+libraries = {
+"": SubResource("AnimationLibrary_v0057")
+}
+autoplay = "idle"
 
 [node name="Curtain" parent="." instance=ExtResource("3_luodm")]
 unique_name_in_owner = true

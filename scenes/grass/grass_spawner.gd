@@ -26,3 +26,7 @@ func spawn_grass():
 func on_grass_pulled():
 	ResourcesManager.add_resource(5, ResourcesManager.GameResourceType.MONEY)
 	grass_pulled.emit()
+
+func _on_tutorial_grass_pulled() -> void:
+	process_mode = Node.PROCESS_MODE_INHERIT
+	on_grass_pulled()

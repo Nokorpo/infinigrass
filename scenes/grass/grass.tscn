@@ -80,3 +80,5 @@ gravity = Vector2(0, 0)
 initial_velocity_min = 64.0
 initial_velocity_max = 64.0
 scale_amount_curve = SubResource("Curve_v45xa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -15,6 +15,8 @@ var finished := false
 var is_instantiated := false
 var is_picked_up := false
 
+var shader_script
+
 func _ready() -> void:
 	$Timer.start(time_until_done)
 	$Sprite2D.texture = sprite_on_spawn
@@ -42,6 +44,9 @@ func _input(event: InputEvent) -> void:
 			self.modulate = Color("ffffff")
 			top_level = false
 			z_index = 0
+			var shader = ShaderMaterial.new()
+			shader.shader = shader_script
+			$Sprite2D.material = shader
 			instantiated.emit()
 			$SpawnSound.play(0)
 		else:

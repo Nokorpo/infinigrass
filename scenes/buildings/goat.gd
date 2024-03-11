@@ -9,6 +9,8 @@ signal cancel_instantiation
 @export var time_until_completion: float = 1.0
 var is_instantiated := false
 
+var shader_script
+
 func _ready() -> void:
 	$Timer.start(time_until_completion)
 
@@ -28,6 +30,9 @@ func _input(event):
 			self.modulate = Color("ffffff")
 			top_level = false
 			z_index = 0
+			var shader = ShaderMaterial.new()
+			shader.shader = shader_script
+			$Sprite2D.material = shader
 			instantiated.emit()
 			$SpawnSound.play(0)
 		else:

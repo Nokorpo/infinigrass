@@ -20,6 +20,8 @@ enum LaborStates { IDLE, WORKING, DONE}
 var state: LaborStates = LaborStates.IDLE
 var need_tween: Tween
 
+var shader_script
+
 func _ready() -> void:
 	$Sprite2D.texture = sprite_on_idle
 
@@ -38,6 +40,10 @@ func _input(event: InputEvent) -> void:
 			self.modulate = Color("ffffff")
 			top_level = false
 			z_index = 0
+			var shader = ShaderMaterial.new()
+			shader.shader = shader_script
+			$AnimatedSprite2D.material = shader
+			
 			instantiated.emit()
 			$SpawnSound.play(0)
 		else:

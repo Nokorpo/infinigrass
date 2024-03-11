@@ -6,6 +6,8 @@ extends Button
 var tooltip_tween: Tween
 var item_to_spawn: PackedScene
 
+var shader = preload("res://scenes/buildings/outline2d.gdshader")
+
 func _ready():
 	item_to_spawn = load(gameplay_item)
 	on_resource_changed()
@@ -19,6 +21,8 @@ func _on_button_down():
 		this_item.top_level = true
 		this_item.z_index = 2
 		this_item.scale = Vector2.ZERO
+		this_item.shader_script = shader
+		
 		var tween = create_tween().set_trans(Tween.TRANS_SINE)
 		tween.tween_property(this_item, "scale", Vector2.ONE, .1)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cyajc7s0odvi5"]
+[gd_scene load_steps=31 format=3 uid="uid://cyajc7s0odvi5"]
 
 [ext_resource type="Script" path="res://scenes/buildings/labor_state_machine.gd" id="1_c754x"]
 [ext_resource type="Texture2D" uid="uid://fast244fi7ax" path="res://assets/sprites/ingame/fermenter_idle.png" id="2_pmjck"]
@@ -14,8 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://cbgjul6kc0be0" path="res://assets/sprites/ui/beer.png" id="11_0inns"]
 [ext_resource type="Texture2D" uid="uid://cyhuc4iejm1pq" path="res://assets/sprites/ui/barley-icon.png" id="12_l46y1"]
 [ext_resource type="AudioStream" uid="uid://4cifbxdt1rjy" path="res://assets/sound/accept.ogg" id="13_dmmj4"]
-[ext_resource type="AudioStream" uid="uid://buy5kuic0cals" path="res://assets/sound/fermenter/fermenter_working.ogg" id="13_xvu5a"]
-[ext_resource type="AudioStream" uid="uid://dcmckpjvu7mca" path="res://assets/sound/fermenter/fermenter_done.ogg" id="14_f0ccr"]
+[ext_resource type="AudioStream" uid="uid://buy5kuic0cals" path="res://assets/sound/fermenter/fermenter_done.ogg" id="13_xvu5a"]
+[ext_resource type="AudioStream" uid="uid://dcmckpjvu7mca" path="res://assets/sound/fermenter/fermenter_spawn.ogg" id="14_f0ccr"]
+[ext_resource type="AudioStream" uid="uid://dutduev67dsbi" path="res://assets/sound/fermenter/fermenter_charged.ogg" id="15_oy7su"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fgw2o"]
 resource_local_to_scene = true
@@ -147,19 +148,19 @@ _data = {
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_224o3"]
 random_pitch = 1.1
 streams_count = 1
-stream_0/stream = ExtResource("13_dmmj4")
+stream_0/stream = ExtResource("14_f0ccr")
 stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6h1bq"]
 random_pitch = 1.5
 streams_count = 1
-stream_0/stream = ExtResource("13_xvu5a")
+stream_0/stream = ExtResource("15_oy7su")
 stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vq82c"]
 random_pitch = 1.25
 streams_count = 1
-stream_0/stream = ExtResource("14_f0ccr")
+stream_0/stream = ExtResource("13_xvu5a")
 stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lkdq7"]
@@ -230,7 +231,6 @@ autoplay = "idle"
 [node name="SpawnSound" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_224o3")
 volume_db = -12.0
-pitch_scale = 0.3
 
 [node name="StartProcessingSound" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_6h1bq")

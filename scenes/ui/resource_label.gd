@@ -2,6 +2,9 @@ extends Label
 
 @export var resource: ResourcesManager.GameResourceType
 
+var real_value = 0 ## Real value of the resource
+var showing_value = 0 ## Value showed to the player right now
+
 func _ready() -> void:
 	match resource:
 		ResourcesManager.GameResourceType.MONEY:
@@ -13,7 +16,15 @@ func _ready() -> void:
 	update_text()
 
 func update_text() -> void:
-	text = str(get_resource_data())
+	real_value = get_resource_data()
+
+func _physics_process(_delta):
+	if real_value != showing_value:
+		if real_value > showing_value:
+			showing_value += 1
+		else:
+			showing_value -= 1
+		text = str(showing_value)
 
 func get_resource_data():
 	match resource:

@@ -1,9 +1,60 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqft1k285ew8c"]
+[gd_scene load_steps=13 format=3 uid="uid://dqft1k285ew8c"]
 
-[ext_resource type="Texture2D" uid="uid://nti6nr5bccbg" path="res://assets/sprites/game_end_screen.png" id="1_ogb3u"]
+[ext_resource type="Texture2D" uid="uid://c40xaw5mgjxaa" path="res://assets/sprites/game_end_screen.jpg" id="1_5s57p"]
 [ext_resource type="Script" path="res://scenes/ui/change_scene_on_click.gd" id="2_33qgs"]
+[ext_resource type="Texture2D" uid="uid://ducfxq3vwdi1m" path="res://assets/sprites/game_end_screen_button.png" id="2_mn4c3"]
 [ext_resource type="PackedScene" uid="uid://dv3kfiw88cwed" path="res://scenes/ui/curtain.tscn" id="3_ctmgk"]
 [ext_resource type="PackedScene" uid="uid://dj0187a52mapk" path="res://scenes/game_start.tscn" id="3_d1gsd"]
+[ext_resource type="Texture2D" uid="uid://rsr65w65f663" path="res://assets/sprites/ingame/star_1.png" id="6_004yc"]
+
+[sub_resource type="Curve" id="Curve_jsp4j"]
+_data = [Vector2(0, 0), 0.0, 19.5019, 0, 0, Vector2(0.110169, 1), -0.101294, -0.101294, 0, 0, Vector2(0.817797, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -14.6279, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_fjai1"]
+offsets = PackedFloat32Array(0, 0.515351, 1)
+colors = PackedColorArray(1, 1, 0.26, 1, 1, 1, 1, 1, 1, 0.5, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n06y3"]
+texture = ExtResource("2_mn4c3")
+
+[sub_resource type="Animation" id="Animation_vjd30"]
+resource_name = "idle"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 1.05)]
+}
+
+[sub_resource type="Animation" id="Animation_ep05m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fnfp1"]
+_data = {
+"RESET": SubResource("Animation_ep05m"),
+"idle": SubResource("Animation_vjd30")
+}
 
 [node name="GameEnd" type="Control"]
 layout_mode = 3
@@ -20,16 +71,51 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_ogb3u")
+texture = ExtResource("1_5s57p")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(394, 818)
+amount = 16
+lifetime = 16.0
+preprocess = 8.0
+texture = ExtResource("6_004yc")
+emission_shape = 3
+emission_rect_extents = Vector2(300, 1)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 80.0
+angular_velocity_min = -45.0
+angular_velocity_max = 45.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_jsp4j")
+color_ramp = SubResource("Gradient_fjai1")
 
 [node name="Button" type="Button" parent="."]
-offset_left = 44.0
-offset_top = 53.0
-offset_right = 426.0
-offset_bottom = 143.0
+layout_mode = 0
+offset_left = 65.0
+offset_top = 73.0
+offset_right = 447.0
+offset_bottom = 163.0
+pivot_offset = Vector2(191, 45)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.411765, 0.243137, 0.105882, 1)
+theme_override_colors/font_pressed_color = Color(0.690196, 0.392157, 0.164706, 1)
+theme_override_colors/font_hover_color = Color(0.560784, 0.364706, 0.219608, 1)
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxTexture_n06y3")
+theme_override_styles/hover = SubResource("StyleBoxTexture_n06y3")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_n06y3")
 text = "Volver al menú principal"
 script = ExtResource("2_33qgs")
 scene = ExtResource("3_d1gsd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Button"]
+libraries = {
+"": SubResource("AnimationLibrary_fnfp1")
+}
+autoplay = "idle"
 
 [node name="Curtain" parent="." instance=ExtResource("3_ctmgk")]
 unique_name_in_owner = true

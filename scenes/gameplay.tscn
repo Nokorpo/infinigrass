@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cbw0iwo3tewe8"]
+[gd_scene load_steps=53 format=3 uid="uid://cbw0iwo3tewe8"]
 
 [ext_resource type="Script" path="res://scenes/grass/grass_spawner.gd" id="1_i14n6"]
 [ext_resource type="Script" path="res://scenes/upgrades_manager.gd" id="2_fwc41"]
@@ -25,9 +25,13 @@
 [ext_resource type="Texture2D" uid="uid://d3tpohvew2ed8" path="res://assets/sprites/ui/tooltip.svg" id="18_uk2c6"]
 [ext_resource type="AudioStream" uid="uid://dt6mglh0cvsmr" path="res://assets/sound/purchase.ogg" id="23_x245p"]
 [ext_resource type="AudioStream" uid="uid://brinng088121h" path="res://assets/sound/cheap_pruner/cheap_pruner1.ogg" id="24_itasg"]
+[ext_resource type="Texture2D" uid="uid://dcu6k770e7ceo" path="res://assets/sprites/ui/button-2-rotated.png" id="24_kxep3"]
+[ext_resource type="PackedScene" uid="uid://dv3kfiw88cwed" path="res://scenes/curtain.tscn" id="24_mwx87"]
 [ext_resource type="Script" path="res://scenes/grass/cut_grass_sound.gd" id="24_p0oul"]
 [ext_resource type="AudioStream" uid="uid://4cifbxdt1rjy" path="res://assets/sound/accept.ogg" id="24_wu1f0"]
 [ext_resource type="AudioStream" uid="uid://bh11yapba75l1" path="res://assets/sound/cancel.ogg" id="25_fj4yu"]
+[ext_resource type="Texture2D" uid="uid://wtsj65xg2g6" path="res://assets/sprites/ui/button-2-rotated-disabled.png" id="25_uc3bm"]
+[ext_resource type="Script" path="res://scenes/finish_game_button.gd" id="25_w7ibv"]
 [ext_resource type="AudioStream" uid="uid://box6hdt07s2o0" path="res://assets/sound/cheap_pruner/cheap_pruner2.ogg" id="25_xycso"]
 [ext_resource type="AudioStream" uid="uid://bir1rax7kbkql" path="res://assets/music/bg01.ogg" id="26_bwwci"]
 [ext_resource type="AudioStream" uid="uid://c8othhpdvffai" path="res://assets/sound/cheap_pruner/cheap_pruner3.ogg" id="26_wyylj"]
@@ -63,6 +67,12 @@ Button/styles/disabled = SubResource("StyleBoxTexture_6ack6")
 Button/styles/hover = SubResource("StyleBoxTexture_6pw1s")
 Button/styles/normal = SubResource("StyleBoxTexture_6pw1s")
 Button/styles/pressed = SubResource("StyleBoxTexture_6pw1s")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_36xo1"]
+texture = ExtResource("24_kxep3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aw5bn"]
+texture = ExtResource("25_uc3bm")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_x3kus"]
 random_pitch = 1.2
@@ -695,6 +705,143 @@ size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("5_gl23d")
 
+[node name="Curtain" parent="." instance=ExtResource("24_mwx87")]
+unique_name_in_owner = true
+offset_right = 136.0
+offset_bottom = 114.0
+
+[node name="EndGamePanel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 200.0
+offset_right = 1000.0
+offset_bottom = 200.0
+grow_horizontal = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_filter = 1
+
+[node name="Control" type="MarginContainer" parent="EndGamePanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="GameEndButton" type="Button" parent="EndGamePanel/Control"]
+custom_minimum_size = Vector2(136, 103)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_7uaaf")
+theme_override_styles/normal = SubResource("StyleBoxTexture_36xo1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_36xo1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_36xo1")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_aw5bn")
+theme_override_styles/focus = SubResource("StyleBoxTexture_36xo1")
+icon_alignment = 1
+script = ExtResource("25_w7ibv")
+
+[node name="Tooltip" type="TextureRect" parent="EndGamePanel/Control/GameEndButton"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -129.0
+offset_top = 105.0
+offset_right = 130.0
+offset_bottom = 257.0
+mouse_filter = 2
+texture = ExtResource("15_wlhpw")
+flip_v = true
+
+[node name="Label" type="Label" parent="EndGamePanel/Control/GameEndButton/Tooltip"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 29.0
+offset_top = -40.0
+offset_right = 4.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.278431, 0.239216, 0.156863, 1)
+theme_override_font_sizes/font_size = 22
+text = "El fin"
+
+[node name="Label2" type="Label" parent="EndGamePanel/Control/GameEndButton/Tooltip"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 81.0
+offset_right = 241.0
+offset_bottom = 131.0
+theme_override_colors/font_color = Color(0.564706, 0.407843, 0.0980392, 1)
+text = "Consigue estos recursos para completar el juego"
+autowrap_mode = 2
+
+[node name="Control" type="MarginContainer" parent="EndGamePanel/Control"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 4
+
+[node name="Resources" type="GridContainer" parent="EndGamePanel/Control/Control"]
+layout_mode = 2
+mouse_filter = 2
+theme = SubResource("Theme_l8mw1")
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="CoinsIcon" type="TextureRect" parent="EndGamePanel/Control/Control/Resources"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("5_gl23d")
+
+[node name="Coins" type="Label" parent="EndGamePanel/Control/Control/Resources"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "300"
+
+[node name="BarleyIcon" type="TextureRect" parent="EndGamePanel/Control/Control/Resources"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("8_ngo0u")
+
+[node name="Barley" type="Label" parent="EndGamePanel/Control/Control/Resources"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "200
+"
+
+[node name="BeerIcon" type="TextureRect" parent="EndGamePanel/Control/Control/Resources"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("5_4x15k")
+
+[node name="Beers" type="Label" parent="EndGamePanel/Control/Control/Resources"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "100
+"
+
 [node name="SFX" type="Node" parent="."]
 
 [node name="CutGrassSound" type="AudioStreamPlayer" parent="SFX"]
@@ -724,6 +871,7 @@ stream = ExtResource("25_fj4yu")
 volume_db = -12.0
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_afbeo")
 volume_db = -18.0
 autoplay = true
@@ -750,4 +898,7 @@ script = ExtResource("30_q8q8d")
 [connection signal="mouse_entered" from="BottomPanel/Buttons/FertilizerButton" to="BottomPanel/Buttons/FertilizerButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="BottomPanel/Buttons/FertilizerButton" to="BottomPanel/Buttons/FertilizerButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="BottomPanel/Buttons/FertilizerButton" to="UpgradesManager" method="upgrade_fertilizer"]
+[connection signal="mouse_entered" from="EndGamePanel/Control/GameEndButton" to="EndGamePanel/Control/GameEndButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="EndGamePanel/Control/GameEndButton" to="EndGamePanel/Control/GameEndButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="EndGamePanel/Control/GameEndButton" to="EndGamePanel/Control/GameEndButton" method="_on_pressed"]
 [connection signal="finished" from="SFX/BackgroundMusic" to="SFX/BackgroundMusic" method="_on_finished"]

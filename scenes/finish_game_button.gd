@@ -26,12 +26,13 @@ func on_resource_changed() -> void:
 			icon.modulate = Color(0, 0, 0, .6)
 
 func _on_pressed() -> void:
-	# TODO transición
 	var curtain = %Curtain
-	curtain.play_animation()
-	var tween = get_tree().create_tween()
-	tween.tween_property(%BackgroundMusic, "volume_db", -50, 1)
-	await curtain.change_scene_now
+	if curtain:
+		mouse_filter = Control.MOUSE_FILTER_IGNORE
+		curtain.play_animation()
+		var tween = get_tree().create_tween()
+		tween.tween_property(%BackgroundMusic, "volume_db", -50, 1)
+		await curtain.change_scene_now
 	get_tree().change_scene_to_file(game_end_scene)
 
 func _on_mouse_entered():

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj0187a52mapk"]
+
+[ext_resource type="Script" path="res://scenes/ui/change_scene_on_click.gd" id="1_x4mu5"]
+[ext_resource type="PackedScene" uid="uid://cbw0iwo3tewe8" path="res://scenes/gameplay.tscn" id="2_6fnf0"]
+[ext_resource type="PackedScene" uid="uid://dv3kfiw88cwed" path="res://scenes/ui/curtain.tscn" id="3_luodm"]
+
+[node name="GameStart" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 299.0
+offset_top = 192.0
+offset_right = 505.0
+offset_bottom = 299.0
+text = "Empezar el juego"
+script = ExtResource("1_x4mu5")
+scene = ExtResource("2_6fnf0")
+
+[node name="Curtain" parent="." instance=ExtResource("3_luodm")]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

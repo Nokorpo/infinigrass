@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dv3kfiw88cwed"]
 
-[ext_resource type="Script" path="res://scenes/curtain.gd" id="1_ff3co"]
+[ext_resource type="Script" path="res://scenes/ui/curtain.gd" id="1_ff3co"]
 [ext_resource type="Texture2D" uid="uid://dkr6gliij3s2s" path="res://assets/sprites/ui/curtain.svg" id="2_ulcys"]
 
 [sub_resource type="Animation" id="Animation_crke4"]

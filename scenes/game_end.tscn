@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqft1k285ew8c"]
+[gd_scene load_steps=5 format=3 uid="uid://dqft1k285ew8c"]
 
 [ext_resource type="Texture2D" uid="uid://nti6nr5bccbg" path="res://assets/sprites/game_end_screen.png" id="1_ogb3u"]
+[ext_resource type="Script" path="res://scenes/ui/change_scene_on_click.gd" id="2_33qgs"]
+[ext_resource type="PackedScene" uid="uid://dv3kfiw88cwed" path="res://scenes/ui/curtain.tscn" id="3_ctmgk"]
+[ext_resource type="PackedScene" uid="uid://dj0187a52mapk" path="res://scenes/game_start.tscn" id="3_d1gsd"]
 
 [node name="GameEnd" type="Control"]
 layout_mode = 3
@@ -18,3 +21,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_ogb3u")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 44.0
+offset_top = 53.0
+offset_right = 426.0
+offset_bottom = 143.0
+text = "Volver al menú principal"
+script = ExtResource("2_33qgs")
+scene = ExtResource("3_d1gsd")
+
+[node name="Curtain" parent="." instance=ExtResource("3_ctmgk")]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

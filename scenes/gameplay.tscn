@@ -26,8 +26,8 @@
 [ext_resource type="AudioStream" uid="uid://dt6mglh0cvsmr" path="res://assets/sound/purchase.ogg" id="23_x245p"]
 [ext_resource type="AudioStream" uid="uid://brinng088121h" path="res://assets/sound/cheap_pruner/cheap_pruner1.ogg" id="24_itasg"]
 [ext_resource type="Texture2D" uid="uid://dcu6k770e7ceo" path="res://assets/sprites/ui/button-2-rotated.png" id="24_kxep3"]
-[ext_resource type="PackedScene" uid="uid://dv3kfiw88cwed" path="res://scenes/curtain.tscn" id="24_mwx87"]
 [ext_resource type="Script" path="res://scenes/grass/cut_grass_sound.gd" id="24_p0oul"]
+[ext_resource type="PackedScene" uid="uid://dv3kfiw88cwed" path="res://scenes/ui/curtain.tscn" id="24_p4wu7"]
 [ext_resource type="AudioStream" uid="uid://4cifbxdt1rjy" path="res://assets/sound/accept.ogg" id="24_wu1f0"]
 [ext_resource type="AudioStream" uid="uid://bh11yapba75l1" path="res://assets/sound/cancel.ogg" id="25_fj4yu"]
 [ext_resource type="Texture2D" uid="uid://wtsj65xg2g6" path="res://assets/sprites/ui/button-2-rotated-disabled.png" id="25_uc3bm"]
@@ -705,7 +705,7 @@ size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("5_gl23d")
 
-[node name="Curtain" parent="." instance=ExtResource("24_mwx87")]
+[node name="Curtain" parent="." instance=ExtResource("24_p4wu7")]
 unique_name_in_owner = true
 offset_right = 136.0
 offset_bottom = 114.0

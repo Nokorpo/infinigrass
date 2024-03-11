@@ -1,5 +1,7 @@
 extends Node2D
 
+signal grass_pulled
+
 const GRASS = preload("res://scenes/grass/grass.tscn")
 var max_grass = 12
 
@@ -16,10 +18,11 @@ func _ready():
 	
 func spawn_grass():
 	var this_grass = GRASS.instantiate()
-	this_grass.pulled.connect(grass_pulled)
+	this_grass.pulled.connect(on_grass_pulled)
 	this_grass.target_pull_distance = %UpgradesManager.get_current_pruner().target_pull_distance
 	this_grass.position = Vector2(randf_range(50, 750), randf_range(50,630))
 	$Grasses.add_child(this_grass)
 
-func grass_pulled():
+func on_grass_pulled():
 	ResourcesManager.add_resource(5, ResourcesManager.GameResourceType.MONEY)
+	grass_pulled.emit()

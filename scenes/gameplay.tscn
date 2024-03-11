@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cbw0iwo3tewe8"]
+[gd_scene load_steps=47 format=3 uid="uid://cbw0iwo3tewe8"]
 
 [ext_resource type="Script" path="res://scenes/grass/grass_spawner.gd" id="1_i14n6"]
 [ext_resource type="Script" path="res://scenes/upgrades_manager.gd" id="2_fwc41"]
@@ -24,11 +24,17 @@
 [ext_resource type="Script" path="res://scenes/ui/buy_building_button.gd" id="16_rxr47"]
 [ext_resource type="Texture2D" uid="uid://d3tpohvew2ed8" path="res://assets/sprites/ui/tooltip.svg" id="18_uk2c6"]
 [ext_resource type="AudioStream" uid="uid://dt6mglh0cvsmr" path="res://assets/sound/purchase.ogg" id="23_x245p"]
+[ext_resource type="AudioStream" uid="uid://brinng088121h" path="res://assets/sound/cheap_pruner/cheap_pruner1.ogg" id="24_itasg"]
+[ext_resource type="Script" path="res://scenes/grass/cut_grass_sound.gd" id="24_p0oul"]
 [ext_resource type="AudioStream" uid="uid://4cifbxdt1rjy" path="res://assets/sound/accept.ogg" id="24_wu1f0"]
 [ext_resource type="AudioStream" uid="uid://bh11yapba75l1" path="res://assets/sound/cancel.ogg" id="25_fj4yu"]
+[ext_resource type="AudioStream" uid="uid://box6hdt07s2o0" path="res://assets/sound/cheap_pruner/cheap_pruner2.ogg" id="25_xycso"]
 [ext_resource type="AudioStream" uid="uid://bir1rax7kbkql" path="res://assets/music/bg01.ogg" id="26_bwwci"]
+[ext_resource type="AudioStream" uid="uid://c8othhpdvffai" path="res://assets/sound/cheap_pruner/cheap_pruner3.ogg" id="26_wyylj"]
 [ext_resource type="AudioStream" uid="uid://c1nwu3k3wgeo" path="res://assets/music/bg02.ogg" id="27_5r2jj"]
+[ext_resource type="AudioStream" uid="uid://82y124y5uguw" path="res://assets/sound/cheap_pruner/cheap_pruner4.ogg" id="27_hka2l"]
 [ext_resource type="AudioStream" uid="uid://ddaryhpy13fvg" path="res://assets/music/bg03.ogg" id="28_iuw2e"]
+[ext_resource type="AudioStream" uid="uid://d3qkiowjj2muy" path="res://assets/sound/cheap_pruner/cheap_pruner5.ogg" id="28_kdgok"]
 [ext_resource type="Script" path="res://scenes/BackgroundMusic.gd" id="30_q8q8d"]
 
 [sub_resource type="Theme" id="Theme_l8mw1"]
@@ -57,6 +63,26 @@ Button/styles/disabled = SubResource("StyleBoxTexture_6ack6")
 Button/styles/hover = SubResource("StyleBoxTexture_6pw1s")
 Button/styles/normal = SubResource("StyleBoxTexture_6pw1s")
 Button/styles/pressed = SubResource("StyleBoxTexture_6pw1s")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_x3kus"]
+random_pitch = 1.2
+streams_count = 5
+stream_0/stream = ExtResource("24_itasg")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("25_xycso")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("26_wyylj")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("27_hka2l")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("28_kdgok")
+stream_4/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ge6mb"]
+random_pitch = 1.4
+streams_count = 1
+stream_0/stream = ExtResource("24_wu1f0")
+stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_afbeo"]
 playback_mode = 2
@@ -670,6 +696,17 @@ texture = ExtResource("5_gl23d")
 
 [node name="SFX" type="Node" parent="."]
 
+[node name="CutGrassSound" type="AudioStreamPlayer" parent="SFX"]
+stream = SubResource("AudioStreamRandomizer_x3kus")
+volume_db = -4.0
+pitch_scale = 0.9
+script = ExtResource("24_p0oul")
+
+[node name="CutGrassCollectResourceSound" type="AudioStreamPlayer" parent="SFX"]
+stream = SubResource("AudioStreamRandomizer_ge6mb")
+volume_db = -12.0
+script = ExtResource("24_p0oul")
+
 [node name="PurchaseSound" type="AudioStreamPlayer" parent="SFX"]
 unique_name_in_owner = true
 stream = ExtResource("23_x245p")
@@ -691,6 +728,8 @@ volume_db = -18.0
 autoplay = true
 script = ExtResource("30_q8q8d")
 
+[connection signal="grass_pulled" from="GrassSpawner" to="SFX/CutGrassSound" method="_on_grass_spawner_grass_pulled"]
+[connection signal="grass_pulled" from="GrassSpawner" to="SFX/CutGrassCollectResourceSound" method="_on_grass_spawner_grass_pulled"]
 [connection signal="timeout" from="GrassSpawner/Timer" to="GrassSpawner" method="_on_timer_timeout"]
 [connection signal="mouse_entered" from="BottomPanel/Buttons/PrunerButton" to="BottomPanel/Buttons/PrunerButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="BottomPanel/Buttons/PrunerButton" to="BottomPanel/Buttons/PrunerButton" method="_on_mouse_exited"]

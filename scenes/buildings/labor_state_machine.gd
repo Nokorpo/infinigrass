@@ -54,6 +54,8 @@ func _input(event: InputEvent) -> void:
 					hide_need()
 					$StartProcessingSound.play(0)
 					get_viewport().set_input_as_handled()
+				else:
+					ResourcesManager.not_enough.emit(recharge_resource)
 			LaborStates.DONE:
 				ResourcesManager.add_resource(amount, resource)
 				state = LaborStates.IDLE

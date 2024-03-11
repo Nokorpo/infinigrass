@@ -13,6 +13,7 @@ func _ready() -> void:
 			ResourcesManager.barley_changed.connect(update_text)
 		ResourcesManager.GameResourceType.BEER:
 			ResourcesManager.beer_changed.connect(update_text)
+	ResourcesManager.not_enough.connect(_on_not_enough_resource)
 	update_text()
 
 func update_text() -> void:
@@ -35,3 +36,7 @@ func get_resource_data():
 		ResourcesManager.GameResourceType.BEER:
 			return ResourcesManager.beer
 	return null
+
+func _on_not_enough_resource(not_enugh_resource: ResourcesManager.GameResourceType):
+	if resource == not_enugh_resource:
+		$AnimationPlayer.play("red")

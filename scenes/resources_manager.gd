@@ -6,10 +6,12 @@ signal resource_changed
 signal money_changed
 signal barley_changed
 signal beer_changed
+## Called if player tries to buy something, but doesn't have enough of that resource
+signal not_enough(resource: GameResourceType)
 
-var money: int = 0
-var barley: int = 0
-var beer: int = 0
+var money: int = 110
+var barley: int = 110
+var beer: int = 10
 
 func add_resource(amount: int, resource_type: GameResourceType) -> void:
 	match resource_type:

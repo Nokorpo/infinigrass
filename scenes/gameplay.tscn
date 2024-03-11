@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://cbw0iwo3tewe8"]
+[gd_scene load_steps=56 format=3 uid="uid://cbw0iwo3tewe8"]
 
 [ext_resource type="Script" path="res://scenes/grass/grass_spawner.gd" id="1_i14n6"]
 [ext_resource type="Script" path="res://scenes/upgrades_manager.gd" id="2_fwc41"]
@@ -43,6 +43,43 @@
 
 [sub_resource type="Theme" id="Theme_l8mw1"]
 Label/font_sizes/font_size = 24
+
+[sub_resource type="Animation" id="Animation_rmmtn"]
+resource_name = "red"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.419608, 0.419608, 1), Color(1, 0.270588, 0.270588, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vcm7p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iu1tm"]
+_data = {
+"RESET": SubResource("Animation_vcm7p"),
+"red": SubResource("Animation_rmmtn")
+}
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o6n6h"]
 texture = ExtResource("10_mrfvr")
@@ -169,6 +206,12 @@ layout_mode = 2
 text = "0	"
 script = ExtResource("4_327l3")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomPanel/Resources/Coins"]
+libraries = {
+"": SubResource("AnimationLibrary_iu1tm")
+}
+autoplay = "RESET"
+
 [node name="BarleyIcon" type="TextureRect" parent="BottomPanel/Resources"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -182,6 +225,12 @@ text = "0"
 script = ExtResource("4_327l3")
 resource = 1
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomPanel/Resources/Barley"]
+libraries = {
+"": SubResource("AnimationLibrary_iu1tm")
+}
+autoplay = "RESET"
+
 [node name="BeerIcon" type="TextureRect" parent="BottomPanel/Resources"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -194,6 +243,12 @@ layout_mode = 2
 text = "0"
 script = ExtResource("4_327l3")
 resource = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomPanel/Resources/Beers"]
+libraries = {
+"": SubResource("AnimationLibrary_iu1tm")
+}
+autoplay = "RESET"
 
 [node name="Buttons" type="HBoxContainer" parent="BottomPanel"]
 layout_mode = 1

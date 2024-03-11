@@ -128,6 +128,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="BottomPanel"]
+z_index = -2
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -532,7 +533,6 @@ mouse_filter = 2
 texture = ExtResource("5_gl23d")
 
 [node name="LaborerButton" type="Button" parent="BottomPanel/Buttons"]
-z_index = 1
 custom_minimum_size = Vector2(87, 84)
 layout_mode = 2
 size_flags_vertical = 12
@@ -616,6 +616,7 @@ texture = ExtResource("5_gl23d")
 
 [node name="FertilizerButton" type="Button" parent="BottomPanel/Buttons"]
 unique_name_in_owner = true
+z_index = -1
 custom_minimum_size = Vector2(103, 136)
 layout_mode = 2
 focus_mode = 0

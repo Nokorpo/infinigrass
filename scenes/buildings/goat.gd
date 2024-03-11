@@ -26,6 +26,7 @@ func _input(event):
 			$Timer.start()
 			is_instantiated = true
 			self.modulate = Color("ffffff")
+			top_level = false
 			instantiated.emit()
 		else:
 			cancel_instantiation.emit()

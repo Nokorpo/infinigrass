@@ -40,6 +40,7 @@ func _input(event: InputEvent) -> void:
 			$Timer.start()
 			is_instantiated = true
 			self.modulate = Color("ffffff")
+			top_level = false
 			instantiated.emit()
 			$SpawnSound.play(0)
 		else:

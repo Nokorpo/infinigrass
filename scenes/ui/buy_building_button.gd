@@ -14,6 +14,11 @@ func _ready():
 func _on_button_down():
 	if can_buy_item():
 		var this_item = load(gameplay_item).instantiate()
+		this_item.top_level = true
+		this_item.scale = Vector2.ZERO
+		var tween = create_tween().set_trans(Tween.TRANS_SINE)
+		tween.tween_property(this_item, "scale", Vector2.ONE, .1)
+
 		%Grasses.add_child(this_item)
 		this_item.instantiated.connect(_on_item_instantiated)
 		this_item.cancel_instantiation.connect(_on_instantiation_canceled)

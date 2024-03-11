@@ -36,6 +36,7 @@ func _input(event: InputEvent) -> void:
 		if can_be_placed():
 			is_instantiated = true
 			self.modulate = Color("ffffff")
+			top_level = false
 			instantiated.emit()
 			$SpawnSound.play(0)
 		else:

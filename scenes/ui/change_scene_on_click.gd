@@ -2,6 +2,9 @@ extends Button
 
 @export var scene: PackedScene
 
+func _ready() -> void:
+	$AnimationPlayer.play("idle")
+
 func _on_pressed() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var curtain = %Curtain

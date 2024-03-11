@@ -41,6 +41,7 @@ func _input(event: InputEvent) -> void:
 			is_instantiated = true
 			self.modulate = Color("ffffff")
 			instantiated.emit()
+			$SpawnSound.play(0)
 		else:
 			cancel_instantiation.emit()
 			queue_free()
@@ -48,6 +49,7 @@ func _input(event: InputEvent) -> void:
 		ResourcesManager.add_resource(amount, resource)
 		get_viewport().set_input_as_handled()
 		pickup()
+		$SpawnSound.play(0)
 
 func pickup():
 	is_picked_up = true

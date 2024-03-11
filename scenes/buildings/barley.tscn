@@ -1,10 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3x4ux3esm5n4"]
+[gd_scene load_steps=19 format=3 uid="uid://d3x4ux3esm5n4"]
 
 [ext_resource type="Script" path="res://scenes/buildings/barley.gd" id="1_heyq3"]
 [ext_resource type="Texture2D" uid="uid://15l3xknbdw5x" path="res://assets/sprites/ingame/barley.png" id="2_7c418"]
 [ext_resource type="Texture2D" uid="uid://bkosywp5cuhe" path="res://assets/sprites/ingame/barley_finished.png" id="3_jtcao"]
 [ext_resource type="Texture2D" uid="uid://bjwpy82a1w767" path="res://assets/sprites/shadow.png" id="4_aggaw"]
 [ext_resource type="Texture2D" uid="uid://cyhuc4iejm1pq" path="res://assets/sprites/ui/barley-icon.png" id="4_rll8r"]
+[ext_resource type="AudioStream" uid="uid://djbalfu360ift" path="res://assets/sound/barley/barley_start1.ogg" id="6_ebxsl"]
+[ext_resource type="AudioStream" uid="uid://dhko3e4ae5jo3" path="res://assets/sound/barley/barley_start2.ogg" id="7_q1tgh"]
+[ext_resource type="AudioStream" uid="uid://o3vfv7p3robu" path="res://assets/sound/barley/barley_start3.ogg" id="8_1nkqr"]
+[ext_resource type="AudioStream" uid="uid://dyqhemijdmtd5" path="res://assets/sound/barley/barley_start4.ogg" id="9_dw475"]
+[ext_resource type="AudioStream" uid="uid://dfwbdrsiljnrl" path="res://assets/sound/barley/barley_start5.ogg" id="10_xer0t"]
 
 [sub_resource type="Animation" id="Animation_6x47e"]
 length = 0.001
@@ -85,6 +90,19 @@ _data = {
 _data = [Vector2(0, 0), 0.0, 23.8585, 0, 0, Vector2(0.11032, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fjehx"]
+streams_count = 5
+stream_0/stream = ExtResource("6_ebxsl")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("7_q1tgh")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("8_1nkqr")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("9_dw475")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("10_xer0t")
+stream_4/weight = 1.0
+
 [node name="Barley" type="Node2D"]
 script = ExtResource("1_heyq3")
 sprite_on_spawn = ExtResource("2_7c418")
@@ -131,5 +149,9 @@ gravity = Vector2(0, 0)
 initial_velocity_min = 64.0
 initial_velocity_max = 64.0
 scale_amount_curve = SubResource("Curve_vmpsm")
+
+[node name="SpawnSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_fjehx")
+volume_db = -12.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

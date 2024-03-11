@@ -37,6 +37,7 @@ func _input(event: InputEvent) -> void:
 			is_instantiated = true
 			self.modulate = Color("ffffff")
 			instantiated.emit()
+			$SpawnSound.play(0)
 		else:
 			cancel_instantiation.emit()
 			queue_free()
@@ -50,6 +51,7 @@ func _input(event: InputEvent) -> void:
 					$Sprite2D.texture = sprite_on_working
 					$AnimatedSprite2D.play("working")
 					hide_need()
+					$StartProcessingSound.play(0)
 					get_viewport().set_input_as_handled()
 			LaborStates.DONE:
 				ResourcesManager.add_resource(amount, resource)
@@ -58,6 +60,7 @@ func _input(event: InputEvent) -> void:
 				$AnimatedSprite2D.play("idle")
 				$CPUParticles2D.emitting = true
 				show_need()
+				$CollectResourceSound.play(0)
 				get_viewport().set_input_as_handled()
 
 func is_mouse_inside():
@@ -70,6 +73,7 @@ func _on_timer_timeout() -> void:
 	state = LaborStates.DONE
 	$Sprite2D.texture = sprite_on_done
 	$AnimatedSprite2D.play("done")
+	$FinishedSound.play(0)
 
 func can_be_placed():
 	if position.x > 775 or position.x < 25\

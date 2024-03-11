@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://5l2jx4qbccm0"]
+[gd_scene load_steps=31 format=3 uid="uid://5l2jx4qbccm0"]
 
 [ext_resource type="Script" path="res://scenes/buildings/labor_state_machine.gd" id="1_723ww"]
 [ext_resource type="Texture2D" uid="uid://cfhjdxcp10pje" path="res://assets/sprites/ingame/laborer_idle.png" id="2_c3lsr"]
@@ -10,9 +10,17 @@
 [ext_resource type="Texture2D" uid="uid://bw07jhbohucjt" path="res://assets/sprites/ingame/laborer animation/idle/laborer_idle3.png" id="11_bu31e"]
 [ext_resource type="Texture2D" uid="uid://dc25t2rwxlm5s" path="res://assets/sprites/ingame/laborer animation/working/laborer_frame1.png" id="12_l7ddd"]
 [ext_resource type="Texture2D" uid="uid://baebch207onjn" path="res://assets/sprites/ingame/laborer animation/working/laborer_frame2.png" id="13_b7xvf"]
+[ext_resource type="AudioStream" uid="uid://ddug8kjwgb63h" path="res://assets/sound/laborer/laborer_spawn1.ogg" id="14_1cko1"]
 [ext_resource type="Texture2D" uid="uid://co2lolul5dkch" path="res://assets/sprites/ingame/laborer animation/working/laborer_frame3.png" id="14_c6pb7"]
+[ext_resource type="AudioStream" uid="uid://d2iumt5w2fchg" path="res://assets/sound/laborer/laborer_spawn2.ogg" id="15_t1apb"]
 [ext_resource type="Texture2D" uid="uid://cbgjul6kc0be0" path="res://assets/sprites/ui/beer.png" id="15_xnu5n"]
+[ext_resource type="AudioStream" uid="uid://cydeffhy8lgub" path="res://assets/sound/laborer/laborer_start1.ogg" id="16_2mq4y"]
 [ext_resource type="Texture2D" uid="uid://cyhuc4iejm1pq" path="res://assets/sprites/ui/barley-icon.png" id="16_4q2yd"]
+[ext_resource type="AudioStream" uid="uid://2liqxl6e1t33" path="res://assets/sound/laborer/laborer_start2.ogg" id="17_46i0m"]
+[ext_resource type="AudioStream" uid="uid://darvcw250a5pi" path="res://assets/sound/laborer/laborer_ready1.ogg" id="18_82vqq"]
+[ext_resource type="AudioStream" uid="uid://b6t04apercsix" path="res://assets/sound/laborer/laborer_ready2.ogg" id="19_uxc5h"]
+[ext_resource type="AudioStream" uid="uid://5njdebjdxca2" path="res://assets/sound/laborer/laborer_ready3.ogg" id="20_n4xcs"]
+[ext_resource type="AudioStream" uid="uid://4cifbxdt1rjy" path="res://assets/sound/accept.ogg" id="21_3av7t"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_twad6"]
 animations = [{
@@ -106,6 +114,37 @@ _data = {
 "idle": SubResource("Animation_0q1gm")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fluuv"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("14_1cko1")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("15_t1apb")
+stream_1/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6d5v5"]
+streams_count = 2
+stream_0/stream = ExtResource("16_2mq4y")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("17_46i0m")
+stream_1/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pqndw"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("18_82vqq")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("19_uxc5h")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("20_n4xcs")
+stream_2/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_es8wv"]
+random_pitch = 1.4
+streams_count = 1
+stream_0/stream = ExtResource("21_3av7t")
+stream_0/weight = 1.0
+
 [node name="Laborer" type="Node2D"]
 script = ExtResource("1_723ww")
 sprite_on_idle = ExtResource("12_l7ddd")
@@ -158,5 +197,22 @@ libraries = {
 "": SubResource("AnimationLibrary_hg0r5")
 }
 autoplay = "idle"
+
+[node name="SpawnSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_fluuv")
+volume_db = -12.0
+
+[node name="StartProcessingSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_6d5v5")
+volume_db = -12.0
+pitch_scale = 1.1
+
+[node name="FinishedSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_pqndw")
+volume_db = -12.0
+
+[node name="CollectResourceSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_es8wv")
+volume_db = -12.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

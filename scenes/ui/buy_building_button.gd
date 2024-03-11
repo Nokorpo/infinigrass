@@ -4,8 +4,10 @@ extends Button
 @export var resource: ResourcesManager.GameResourceType
 @export var cost: int = 100
 var tooltip_tween: Tween
+var item_to_spawn: PackedScene
 
 func _ready():
+	item_to_spawn = load(gameplay_item)
 	on_resource_changed()
 	$Tooltip/Price.set_texture(resource)
 	$Tooltip/Price.set_price(cost)
@@ -13,7 +15,7 @@ func _ready():
 
 func _on_button_down():
 	if can_buy_item():
-		var this_item = load(gameplay_item).instantiate()
+		var this_item = item_to_spawn.instantiate()
 		this_item.top_level = true
 		this_item.scale = Vector2.ZERO
 		var tween = create_tween().set_trans(Tween.TRANS_SINE)

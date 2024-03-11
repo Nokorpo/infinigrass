@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dj0187a52mapk"]
+[gd_scene load_steps=21 format=3 uid="uid://dj0187a52mapk"]
 
 [ext_resource type="Script" path="res://scenes/ui/change_scene_on_click.gd" id="1_x4mu5"]
 [ext_resource type="PackedScene" uid="uid://cbw0iwo3tewe8" path="res://scenes/gameplay.tscn" id="2_6fnf0"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://bmq2tywuohcu7" path="res://assets/sprites/menu/menu_logo.png" id="4_lluwr"]
 [ext_resource type="Texture2D" uid="uid://dx6tnj0i12aco" path="res://assets/sprites/menu/beer.png" id="5_vhbhm"]
 [ext_resource type="Texture2D" uid="uid://crgu5wbidm348" path="res://assets/sprites/menu/heart.png" id="6_dv0xd"]
-[ext_resource type="Shader" path="res://scenes/buildings/outline2d.gdshader" id="7_64j2x"]
 [ext_resource type="AudioStream" uid="uid://do0und3oppoyh" path="res://assets/music/start_menu.ogg" id="12_yljmm"]
 
 [sub_resource type="Curve" id="Curve_vrsp8"]
@@ -59,15 +58,6 @@ _data = {
 "idle": SubResource("Animation_4gkrr")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbt7f"]
-shader = ExtResource("7_64j2x")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/width = 3.0
-shader_parameter/pattern = 0
-shader_parameter/inside = false
-shader_parameter/add_margins = true
-shader_parameter/enabled = true
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dsvfr"]
 texture = ExtResource("5_vhbhm")
 
@@ -85,18 +75,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:material:shader_parameter/width")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [3.0]
-}
 
 [sub_resource type="Animation" id="Animation_g0i24"]
 resource_name = "idle"
@@ -113,18 +91,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.05, 1.05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:material:shader_parameter/width")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [3.0, 6.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v0057"]
@@ -229,7 +195,6 @@ libraries = {
 autoplay = "idle"
 
 [node name="Button" type="Button" parent="."]
-material = SubResource("ShaderMaterial_tbt7f")
 layout_mode = 0
 offset_left = 23.0
 offset_top = 342.0

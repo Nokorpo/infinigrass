@@ -33,6 +33,7 @@ func _on_timer_timeout() -> void:
 	$Sprite2D/AnimationPlayer.play("ready")
 	$Sprite2D.texture = sprite_on_completed
 	finished = true
+	$Sprite2D.material.set_shader_parameter("enabled", true)
 
 func _input(event: InputEvent) -> void:
 	if is_picked_up:

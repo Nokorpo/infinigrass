@@ -6,7 +6,7 @@ extends Button
 var tooltip_tween: Tween
 var item_to_spawn: PackedScene
 
-var shader = preload("res://scenes/buildings/outline2d.gdshader")
+var shader: Shader = preload("res://scenes/buildings/outline2d.gdshader")
 
 func _ready():
 	item_to_spawn = load(gameplay_item)

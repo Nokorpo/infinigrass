@@ -65,6 +65,7 @@ shader_parameter/width = 3.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
+shader_parameter/enabled = false
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dsvfr"]
 texture = ExtResource("5_vhbhm")

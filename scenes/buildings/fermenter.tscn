@@ -26,6 +26,7 @@ shader_parameter/width = 0.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
+shader_parameter/enabled = false
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sj5cc"]
 animations = [{

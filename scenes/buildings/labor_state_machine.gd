@@ -72,7 +72,7 @@ func _input(event: InputEvent) -> void:
 				show_need()
 				$CollectResourceSound.play(0)
 				$AnimatedSprite2D/AnimationPlayer.stop()
-				$AnimatedSprite2D.material.set("shader_parameter/width", 0)
+				$AnimatedSprite2D.material.set_shader_parameter("enabled", false)
 				get_viewport().set_input_as_handled()
 
 func is_mouse_inside():
@@ -86,6 +86,7 @@ func _on_timer_timeout() -> void:
 	$Sprite2D.texture = sprite_on_done
 	$AnimatedSprite2D.play("done")
 	$FinishedSound.play(0)
+	$AnimatedSprite2D.material.set_shader_parameter("enabled", true)
 	$AnimatedSprite2D/AnimationPlayer.play("outline_focus")
 
 func can_be_placed():

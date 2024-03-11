@@ -17,6 +17,7 @@ func _on_button_down():
 	if can_buy_item():
 		var this_item = item_to_spawn.instantiate()
 		this_item.top_level = true
+		this_item.z_index = 2
 		this_item.scale = Vector2.ZERO
 		var tween = create_tween().set_trans(Tween.TRANS_SINE)
 		tween.tween_property(this_item, "scale", Vector2.ONE, .1)

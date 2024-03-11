@@ -204,6 +204,7 @@ time_until_done = 15.0
 recharge_resource = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_c3lsr")

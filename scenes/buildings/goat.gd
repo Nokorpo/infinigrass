@@ -27,6 +27,7 @@ func _input(event):
 			is_instantiated = true
 			self.modulate = Color("ffffff")
 			top_level = false
+			z_index = 0
 			instantiated.emit()
 			$SpawnSound.play(0)
 		else:

@@ -292,6 +292,7 @@ texture = ExtResource("8_al71x")
 
 [node name="Tooltip" type="TextureRect" parent="BottomPanel/Buttons/PrunerButton"]
 modulate = Color(1, 1, 1, 0)
+z_index = 1
 layout_mode = 0
 offset_left = -10.0
 offset_top = -114.0
@@ -379,6 +380,7 @@ texture = ExtResource("9_vpnhb")
 
 [node name="Tooltip" type="TextureRect" parent="BottomPanel/Buttons/BarleyButton"]
 modulate = Color(1, 1, 1, 0)
+z_index = 1
 layout_mode = 0
 offset_left = -86.0
 offset_top = -132.0
@@ -461,6 +463,7 @@ texture = ExtResource("10_fspom")
 
 [node name="Tooltip" type="TextureRect" parent="BottomPanel/Buttons/GoatButton"]
 modulate = Color(1, 1, 1, 0)
+z_index = 1
 layout_mode = 0
 offset_left = -86.0
 offset_top = -132.0
@@ -543,6 +546,7 @@ texture = ExtResource("11_73bhf")
 
 [node name="Tooltip" type="TextureRect" parent="BottomPanel/Buttons/FermenterButton"]
 modulate = Color(1, 1, 1, 0)
+z_index = 1
 layout_mode = 0
 offset_left = -86.0
 offset_top = -132.0
@@ -625,6 +629,7 @@ texture = ExtResource("12_r4wol")
 
 [node name="Tooltip" type="TextureRect" parent="BottomPanel/Buttons/LaborerButton"]
 modulate = Color(1, 1, 1, 0)
+z_index = 1
 layout_mode = 0
 offset_left = -86.0
 offset_top = -132.0
@@ -686,7 +691,6 @@ texture = ExtResource("5_gl23d")
 
 [node name="FertilizerButton" type="Button" parent="BottomPanel/Buttons"]
 unique_name_in_owner = true
-z_index = -1
 custom_minimum_size = Vector2(103, 136)
 layout_mode = 2
 focus_mode = 0
@@ -707,6 +711,7 @@ texture = ExtResource("13_rsyjd")
 
 [node name="Tooltip" type="TextureRect" parent="BottomPanel/Buttons/FertilizerButton"]
 modulate = Color(1, 1, 1, 0)
+z_index = 1
 layout_mode = 0
 offset_left = -143.0
 offset_top = -114.0

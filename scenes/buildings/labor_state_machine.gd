@@ -61,6 +61,8 @@ func _input(event: InputEvent) -> void:
 				$CPUParticles2D.emitting = true
 				show_need()
 				$CollectResourceSound.play(0)
+				$AnimatedSprite2D/AnimationPlayer.stop()
+				$AnimatedSprite2D.material.set("shader_parameter/width", 0)
 				get_viewport().set_input_as_handled()
 
 func is_mouse_inside():
@@ -74,6 +76,7 @@ func _on_timer_timeout() -> void:
 	$Sprite2D.texture = sprite_on_done
 	$AnimatedSprite2D.play("done")
 	$FinishedSound.play(0)
+	$AnimatedSprite2D/AnimationPlayer.play("outline_focus")
 
 func can_be_placed():
 	if position.x > 775 or position.x < 25\

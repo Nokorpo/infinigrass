@@ -1,15 +1,25 @@
-[gd_scene load_steps=19 format=3 uid="uid://d3x4ux3esm5n4"]
+[gd_scene load_steps=21 format=3 uid="uid://d3x4ux3esm5n4"]
 
 [ext_resource type="Script" path="res://scenes/buildings/barley.gd" id="1_heyq3"]
 [ext_resource type="Texture2D" uid="uid://15l3xknbdw5x" path="res://assets/sprites/ingame/barley.png" id="2_7c418"]
 [ext_resource type="Texture2D" uid="uid://bkosywp5cuhe" path="res://assets/sprites/ingame/barley_finished.png" id="3_jtcao"]
 [ext_resource type="Texture2D" uid="uid://bjwpy82a1w767" path="res://assets/sprites/shadow.png" id="4_aggaw"]
 [ext_resource type="Texture2D" uid="uid://cyhuc4iejm1pq" path="res://assets/sprites/ui/barley-icon.png" id="4_rll8r"]
+[ext_resource type="Shader" path="res://scenes/buildings/outline2d.gdshader" id="5_7cvrf"]
 [ext_resource type="AudioStream" uid="uid://djbalfu360ift" path="res://assets/sound/barley/barley_start1.ogg" id="6_ebxsl"]
 [ext_resource type="AudioStream" uid="uid://dhko3e4ae5jo3" path="res://assets/sound/barley/barley_start2.ogg" id="7_q1tgh"]
 [ext_resource type="AudioStream" uid="uid://o3vfv7p3robu" path="res://assets/sound/barley/barley_start3.ogg" id="8_1nkqr"]
 [ext_resource type="AudioStream" uid="uid://dyqhemijdmtd5" path="res://assets/sound/barley/barley_start4.ogg" id="9_dw475"]
 [ext_resource type="AudioStream" uid="uid://dfwbdrsiljnrl" path="res://assets/sound/barley/barley_start5.ogg" id="10_xer0t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6xxkm"]
+resource_local_to_scene = true
+shader = ExtResource("5_7cvrf")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
 
 [sub_resource type="Animation" id="Animation_6x47e"]
 length = 0.001
@@ -24,6 +34,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0.7, 0.7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/width")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_48bb6"]
@@ -40,6 +62,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
 "values": [Vector2(0.7, 0.7), Vector2(0.75, 0.75)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/width")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 6.0, 4.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aaw4k"]
@@ -118,6 +152,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_aggaw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6xxkm")
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_7c418")
 offset = Vector2(-5, -55)

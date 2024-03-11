@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://cyajc7s0odvi5"]
+[gd_scene load_steps=30 format=3 uid="uid://cyajc7s0odvi5"]
 
 [ext_resource type="Script" path="res://scenes/buildings/labor_state_machine.gd" id="1_c754x"]
 [ext_resource type="Texture2D" uid="uid://fast244fi7ax" path="res://assets/sprites/ingame/fermenter_idle.png" id="2_pmjck"]
 [ext_resource type="Texture2D" uid="uid://cfyx7tlgw83fj" path="res://assets/sprites/ingame/fermenter_working.png" id="3_glb40"]
 [ext_resource type="Texture2D" uid="uid://cusvgwctd8pyt" path="res://assets/sprites/ingame/fermenter_done.png" id="4_8u0bc"]
 [ext_resource type="Texture2D" uid="uid://bjwpy82a1w767" path="res://assets/sprites/shadow.png" id="5_dhxjl"]
+[ext_resource type="Shader" path="res://scenes/buildings/outline2d.gdshader" id="5_m1xck"]
 [ext_resource type="Texture2D" uid="uid://bi6kpbtm16mef" path="res://assets/sprites/ingame/fermenter animation/fermenter_frame1.png" id="5_wkc04"]
 [ext_resource type="Texture2D" uid="uid://cecoo5iopur27" path="res://assets/sprites/ingame/fermenter animation/fermenter_frame2.png" id="6_gxuoh"]
 [ext_resource type="Texture2D" uid="uid://cyu5dvyyjioab" path="res://assets/sprites/ingame/fermenter animation/fermenter_frame3.png" id="7_n0wlq"]
@@ -15,6 +16,15 @@
 [ext_resource type="AudioStream" uid="uid://4cifbxdt1rjy" path="res://assets/sound/accept.ogg" id="13_dmmj4"]
 [ext_resource type="AudioStream" uid="uid://buy5kuic0cals" path="res://assets/sound/fermenter/fermenter_working.ogg" id="13_xvu5a"]
 [ext_resource type="AudioStream" uid="uid://dcmckpjvu7mca" path="res://assets/sound/fermenter/fermenter_done.ogg" id="14_f0ccr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fgw2o"]
+resource_local_to_scene = true
+shader = ExtResource("5_m1xck")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sj5cc"]
 animations = [{
@@ -54,6 +64,44 @@ animations = [{
 "name": &"working",
 "speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_j3xyd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_qvpga"]
+resource_name = "outline_focus"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [4.0, 8.0, 4.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mii5d"]
+_data = {
+"RESET": SubResource("Animation_j3xyd"),
+"outline_focus": SubResource("Animation_qvpga")
+}
 
 [sub_resource type="Curve" id="Curve_fpccl"]
 _data = [Vector2(0, 0), 0.0, 23.9341, 0, 0, Vector2(0.11157, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -138,11 +186,17 @@ texture = ExtResource("2_pmjck")
 offset = Vector2(0, -50)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_fgw2o")
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_sj5cc")
 animation = &"idle"
 autoplay = "idle"
 offset = Vector2(0, -50)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_mii5d")
+}
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

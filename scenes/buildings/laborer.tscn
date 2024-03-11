@@ -1,7 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://5l2jx4qbccm0"]
+[gd_scene load_steps=36 format=3 uid="uid://5l2jx4qbccm0"]
 
 [ext_resource type="Script" path="res://scenes/buildings/labor_state_machine.gd" id="1_723ww"]
 [ext_resource type="Texture2D" uid="uid://cfhjdxcp10pje" path="res://assets/sprites/ingame/laborer_idle.png" id="2_c3lsr"]
+[ext_resource type="Shader" path="res://scenes/buildings/outline2d.gdshader" id="5_2lg6s"]
 [ext_resource type="Texture2D" uid="uid://bjwpy82a1w767" path="res://assets/sprites/shadow.png" id="5_2pryl"]
 [ext_resource type="Texture2D" uid="uid://cbvjyj6o88tkf" path="res://assets/sprites/ingame/laborer animation/done/laborer_done2.png" id="6_0xske"]
 [ext_resource type="Texture2D" uid="uid://dmnjlk7jtynb3" path="res://assets/sprites/ingame/laborer animation/done/laborer_done3.png" id="7_vvtsy"]
@@ -21,6 +22,15 @@
 [ext_resource type="AudioStream" uid="uid://b6t04apercsix" path="res://assets/sound/laborer/laborer_ready2.ogg" id="19_uxc5h"]
 [ext_resource type="AudioStream" uid="uid://5njdebjdxca2" path="res://assets/sound/laborer/laborer_ready3.ogg" id="20_n4xcs"]
 [ext_resource type="AudioStream" uid="uid://4cifbxdt1rjy" path="res://assets/sound/accept.ogg" id="21_3av7t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yhmfl"]
+resource_local_to_scene = true
+shader = ExtResource("5_2lg6s")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 1
+shader_parameter/inside = false
+shader_parameter/add_margins = true
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_twad6"]
 animations = [{
@@ -72,6 +82,44 @@ animations = [{
 "name": &"working",
 "speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_j3xyd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_qvpga"]
+resource_name = "outline_focus"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [4.0, 8.0, 4.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mii5d"]
+_data = {
+"RESET": SubResource("Animation_j3xyd"),
+"outline_focus": SubResource("Animation_qvpga")
+}
 
 [sub_resource type="Curve" id="Curve_y7p4r"]
 _data = [Vector2(0, 0), 0.0, 23.9341, 0, 0, Vector2(0.11157, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -162,12 +210,18 @@ texture = ExtResource("2_c3lsr")
 offset = Vector2(-5, -65)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_yhmfl")
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_twad6")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.94384
 offset = Vector2(-5, -75)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_mii5d")
+}
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dj0187a52mapk"]
+[gd_scene load_steps=23 format=3 uid="uid://dj0187a52mapk"]
 
 [ext_resource type="Script" path="res://scenes/ui/change_scene_on_click.gd" id="1_x4mu5"]
 [ext_resource type="PackedScene" uid="uid://cbw0iwo3tewe8" path="res://scenes/gameplay.tscn" id="2_6fnf0"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dx6tnj0i12aco" path="res://assets/sprites/menu/beer.png" id="5_vhbhm"]
 [ext_resource type="Texture2D" uid="uid://crgu5wbidm348" path="res://assets/sprites/menu/heart.png" id="6_dv0xd"]
 [ext_resource type="Shader" path="res://scenes/buildings/outline2d.gdshader" id="7_64j2x"]
+[ext_resource type="AudioStream" uid="uid://do0und3oppoyh" path="res://assets/music/start_menu.ogg" id="12_yljmm"]
 
 [sub_resource type="Curve" id="Curve_vrsp8"]
 _data = [Vector2(0, 0), 0.0, 19.5019, 0, 0, Vector2(0.110169, 1), -0.101294, -0.101294, 0, 0, Vector2(0.817797, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -14.6279, 0.0, 0, 0]
@@ -65,7 +66,7 @@ shader_parameter/width = 3.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
-shader_parameter/enabled = false
+shader_parameter/enabled = true
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dsvfr"]
 texture = ExtResource("5_vhbhm")
@@ -252,5 +253,10 @@ autoplay = "idle"
 
 [node name="Curtain" parent="." instance=ExtResource("3_luodm")]
 unique_name_in_owner = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_yljmm")
+volume_db = -16.0
+autoplay = true
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

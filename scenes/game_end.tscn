@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://dqft1k285ew8c"]
+[gd_scene load_steps=15 format=3 uid="uid://dqft1k285ew8c"]
 
 [ext_resource type="Texture2D" uid="uid://c40xaw5mgjxaa" path="res://assets/sprites/game_end_screen.jpg" id="1_5s57p"]
+[ext_resource type="Script" path="res://scenes/reset_game.gd" id="1_u8ug0"]
 [ext_resource type="Script" path="res://scenes/ui/change_scene_on_click.gd" id="2_33qgs"]
 [ext_resource type="Texture2D" uid="uid://ducfxq3vwdi1m" path="res://assets/sprites/game_end_screen_button.png" id="2_mn4c3"]
 [ext_resource type="PackedScene" uid="uid://dv3kfiw88cwed" path="res://scenes/ui/curtain.tscn" id="3_ctmgk"]
 [ext_resource type="PackedScene" uid="uid://dj0187a52mapk" path="res://scenes/game_start.tscn" id="3_d1gsd"]
 [ext_resource type="Texture2D" uid="uid://rsr65w65f663" path="res://assets/sprites/ingame/star_1.png" id="6_004yc"]
+[ext_resource type="AudioStream" uid="uid://cw4bq8y1bpw8k" path="res://assets/music/game_end.ogg" id="7_yimf4"]
 
 [sub_resource type="Curve" id="Curve_jsp4j"]
 _data = [Vector2(0, 0), 0.0, 19.5019, 0, 0, Vector2(0.110169, 1), -0.101294, -0.101294, 0, 0, Vector2(0.817797, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -14.6279, 0.0, 0, 0]
@@ -63,6 +65,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_u8ug0")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -119,5 +122,10 @@ autoplay = "idle"
 
 [node name="Curtain" parent="." instance=ExtResource("3_ctmgk")]
 unique_name_in_owner = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_yimf4")
+volume_db = -16.0
+autoplay = true
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

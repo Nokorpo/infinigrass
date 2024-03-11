@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0ks5cto5e1of"]
+[gd_scene load_steps=13 format=3 uid="uid://d0ks5cto5e1of"]
 
 [ext_resource type="Script" path="res://scenes/buildings/goat.gd" id="1_1c8vk"]
 [ext_resource type="Texture2D" uid="uid://bjwpy82a1w767" path="res://assets/sprites/shadow.png" id="2_0oac5"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://wew3p58jopc4" path="res://assets/sprites/ingame/goat animation/goat_frame2.png" id="3_cgreu"]
 [ext_resource type="Texture2D" uid="uid://dkgoemyihjug3" path="res://assets/sprites/ingame/goat animation/goat_frame3.png" id="4_k6lvx"]
 [ext_resource type="Texture2D" uid="uid://d4hlx2pe4d8nl" path="res://assets/sprites/ui/coin.png" id="6_hixs4"]
+[ext_resource type="AudioStream" uid="uid://cui4thfoq05g6" path="res://assets/sound/goat/goat_spawn1.ogg" id="7_ysjpd"]
+[ext_resource type="AudioStream" uid="uid://6nv3bx30gy2p" path="res://assets/sound/goat/goat_spawn2.ogg" id="8_614yj"]
+[ext_resource type="AudioStream" uid="uid://b5y7d21h185r" path="res://assets/sound/goat/goat_spawn3.ogg" id="9_hnb5s"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hkbq0"]
 animations = [{
@@ -27,6 +30,16 @@ animations = [{
 [sub_resource type="Curve" id="Curve_fpuyd"]
 _data = [Vector2(0, 0), 0.0, 23.9341, 0, 0, Vector2(0.11157, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_faq03"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("7_ysjpd")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("8_614yj")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("9_hnb5s")
+stream_2/weight = 0.5
 
 [node name="Goat" type="Node2D"]
 script = ExtResource("1_1c8vk")
@@ -59,5 +72,7 @@ gravity = Vector2(0, -100)
 scale_amount_curve = SubResource("Curve_fpuyd")
 
 [node name="SpawnSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_faq03")
+volume_db = -12.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

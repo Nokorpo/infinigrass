@@ -28,6 +28,7 @@ func _input(event):
 			self.modulate = Color("ffffff")
 			top_level = false
 			instantiated.emit()
+			$SpawnSound.play(0)
 		else:
 			cancel_instantiation.emit()
 			queue_free()

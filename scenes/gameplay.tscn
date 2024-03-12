@@ -785,7 +785,7 @@ offset_bottom = 200.0
 grow_horizontal = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-mouse_filter = 1
+mouse_filter = 2
 
 [node name="Control" type="MarginContainer" parent="EndGamePanel"]
 layout_mode = 1

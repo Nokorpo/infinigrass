@@ -1,0 +1,18 @@
+keys,es,en,fr
+language,Idioma: Español,Language: English,Langue: Française
+back_to_main_menu,Volver al menú principal,Back to main menu,Revenir au menu principal
+the_end,El fin,The end,La fin
+the_end_description,Consigue estos recursos para completar el juego,Get these resources to complete the game,Obtenez ces ressources pour terminer le jeu
+pruner,Podadora,Pruner,Sécateur
+pruner_description,Permite arrancar hierbas mas rápido,Allows you to pull out grass faster,Vous permet d'arracher les herbes plus rapidement
+barley,Cebada,Barley,Orge
+barley_description,Plantala para conseguir cebada,Plant it to get barley,Plantez-le pour obtenir de l'orge
+goat,Cabra,Goat,Chèvre
+goat_description,Come cebada y produce dinero por algún motivo,Eats barley and makes money for some reason,Mange de l'orge et gagne de l'argent
+fermenter,Fermentador,Fermenter,Fermenteur
+fermenter_description,Cargalo de cebada para hacer cerveza,Load it with barley to make beer,Chargez-le d'orge pour faire de la bière
+laborer,Jornalero,Laborer,Ouvrier
+laborer_description,A cambio de cerveza recoge cebada por ti,In exchange for beer he collects barley for you,En échange de bière il récupère de l'orge pour toi
+fertilizer,Fertilizante,Fertilizer,Engrais
+fertilizer_description,Consigue que crezcan mas hierbas y mas rápido,Get more grass and grow it faster,Obtenez plus d'herbe et faites-la pousser plus vite
+

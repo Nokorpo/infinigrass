@@ -110,7 +110,7 @@ theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxTexture_n06y3")
 theme_override_styles/hover = SubResource("StyleBoxTexture_n06y3")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_n06y3")
-text = "Volver al menú principal"
+text = "back_to_main_menu"
 script = ExtResource("2_33qgs")
 scene = ExtResource("3_d1gsd")
 

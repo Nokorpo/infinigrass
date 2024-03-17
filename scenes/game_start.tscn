@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dj0187a52mapk"]
+[gd_scene load_steps=25 format=3 uid="uid://dj0187a52mapk"]
 
 [ext_resource type="Script" path="res://scenes/ui/change_scene_on_click.gd" id="1_x4mu5"]
 [ext_resource type="PackedScene" uid="uid://cbw0iwo3tewe8" path="res://scenes/gameplay.tscn" id="2_6fnf0"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dslmpckc0erp5" path="res://assets/sprites/menu/menu_laborer.png" id="3_wk2n6"]
 [ext_resource type="Texture2D" uid="uid://d21l3mhoeckph" path="res://assets/sprites/menu/background.png" id="4_ey3sf"]
 [ext_resource type="Texture2D" uid="uid://bmq2tywuohcu7" path="res://assets/sprites/menu/menu_logo.png" id="4_lluwr"]
+[ext_resource type="Script" path="res://localization/localization_button.gd" id="4_ns5ce"]
 [ext_resource type="Texture2D" uid="uid://dx6tnj0i12aco" path="res://assets/sprites/menu/beer.png" id="5_vhbhm"]
 [ext_resource type="Texture2D" uid="uid://crgu5wbidm348" path="res://assets/sprites/menu/heart.png" id="6_dv0xd"]
 [ext_resource type="Shader" path="res://scenes/buildings/outline2d.gdshader" id="7_64j2x"]
@@ -20,6 +21,18 @@ point_count = 4
 [sub_resource type="Gradient" id="Gradient_lea0a"]
 offsets = PackedFloat32Array(0, 0.515351, 1)
 colors = PackedColorArray(1, 1, 0.26, 1, 1, 1, 1, 1, 0.733333, 0.831373, 0.580392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbd2w"]
+bg_color = Color(0.207843, 0.45098, 0.223529, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.105882, 0.290196, 0.145098, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="Animation" id="Animation_s44jc"]
 length = 0.001
@@ -171,6 +184,28 @@ offset_right = 800.0
 offset_bottom = 800.0
 texture = ExtResource("2_krvil")
 
+[node name="Language" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -375.0
+offset_top = -368.0
+offset_right = -212.0
+offset_bottom = -311.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.933333, 0.92549, 0.705882, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_gbd2w")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gbd2w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gbd2w")
+text = "language"
+script = ExtResource("4_ns5ce")
+
 [node name="Laborer" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 231.0
@@ -259,4 +294,5 @@ stream = ExtResource("12_yljmm")
 volume_db = -16.0
 autoplay = true
 
+[connection signal="pressed" from="Language" to="Language" method="_on_toggle_language_pressed"]
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

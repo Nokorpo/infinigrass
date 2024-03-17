@@ -315,7 +315,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.278431, 0.239216, 0.156863, 1)
 theme_override_font_sizes/font_size = 22
-text = "Podadora"
+text = "pruner"
 
 [node name="Label2" type="Label" parent="BottomPanel/Buttons/PrunerButton/Tooltip"]
 layout_mode = 0
@@ -324,7 +324,7 @@ offset_top = 56.0
 offset_right = 237.0
 offset_bottom = 106.0
 theme_override_colors/font_color = Color(0.564706, 0.407843, 0.0980392, 1)
-text = "Permite arrancar hierbas mas rápido"
+text = "pruner_description"
 autowrap_mode = 2
 
 [node name="Price" type="HBoxContainer" parent="BottomPanel/Buttons/PrunerButton/Tooltip"]
@@ -403,7 +403,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.278431, 0.239216, 0.156863, 1)
 theme_override_font_sizes/font_size = 22
-text = "Cebada"
+text = "barley"
 
 [node name="Label2" type="Label" parent="BottomPanel/Buttons/BarleyButton/Tooltip"]
 layout_mode = 0
@@ -412,7 +412,7 @@ offset_top = 56.0
 offset_right = 237.0
 offset_bottom = 106.0
 theme_override_colors/font_color = Color(0.564706, 0.407843, 0.0980392, 1)
-text = "Plantala para conseguir cebada"
+text = "barley_description"
 autowrap_mode = 2
 
 [node name="Price" type="HBoxContainer" parent="BottomPanel/Buttons/BarleyButton/Tooltip"]
@@ -486,7 +486,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.278431, 0.239216, 0.156863, 1)
 theme_override_font_sizes/font_size = 22
-text = "Cabra"
+text = "goat"
 
 [node name="Label2" type="Label" parent="BottomPanel/Buttons/GoatButton/Tooltip"]
 layout_mode = 0
@@ -495,7 +495,7 @@ offset_top = 56.0
 offset_right = 237.0
 offset_bottom = 106.0
 theme_override_colors/font_color = Color(0.564706, 0.407843, 0.0980392, 1)
-text = "Come cebada y produce dinero por algún motivo"
+text = "goat_description"
 autowrap_mode = 2
 
 [node name="Price" type="HBoxContainer" parent="BottomPanel/Buttons/GoatButton/Tooltip"]
@@ -569,7 +569,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.278431, 0.239216, 0.156863, 1)
 theme_override_font_sizes/font_size = 22
-text = "Fermentador"
+text = "fermenter"
 
 [node name="Label2" type="Label" parent="BottomPanel/Buttons/FermenterButton/Tooltip"]
 layout_mode = 0
@@ -578,7 +578,7 @@ offset_top = 56.0
 offset_right = 237.0
 offset_bottom = 106.0
 theme_override_colors/font_color = Color(0.564706, 0.407843, 0.0980392, 1)
-text = "Cargalo de cebada para hacer cerveza"
+text = "fermenter_description"
 autowrap_mode = 2
 
 [node name="Price" type="HBoxContainer" parent="BottomPanel/Buttons/FermenterButton/Tooltip"]
@@ -652,7 +652,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.278431, 0.239216, 0.156863, 1)
 theme_override_font_sizes/font_size = 22
-text = "Jornalero"
+text = "laborer"
 
 [node name="Label2" type="Label" parent="BottomPanel/Buttons/LaborerButton/Tooltip"]
 layout_mode = 0
@@ -661,7 +661,7 @@ offset_top = 56.0
 offset_right = 237.0
 offset_bottom = 106.0
 theme_override_colors/font_color = Color(0.564706, 0.407843, 0.0980392, 1)
-text = "A cambio de cerveza, recoge cebada por ti"
+text = "laborer_description"
 autowrap_mode = 2
 
 [node name="Price" type="HBoxContainer" parent="BottomPanel/Buttons/LaborerButton/Tooltip"]
@@ -733,7 +733,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.278431, 0.239216, 0.156863, 1)
 theme_override_font_sizes/font_size = 22
-text = "Fertilizante"
+text = "fertilizer"
 
 [node name="Label2" type="Label" parent="BottomPanel/Buttons/FertilizerButton/Tooltip"]
 layout_mode = 0
@@ -742,7 +742,7 @@ offset_top = 56.0
 offset_right = 237.0
 offset_bottom = 106.0
 theme_override_colors/font_color = Color(0.564706, 0.407843, 0.0980392, 1)
-text = "Consigue que crezcan mas hierbas y mas rápido"
+text = "fertilizer_description"
 autowrap_mode = 2
 
 [node name="Price" type="HBoxContainer" parent="BottomPanel/Buttons/FertilizerButton/Tooltip"]
@@ -839,7 +839,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.278431, 0.239216, 0.156863, 1)
 theme_override_font_sizes/font_size = 22
-text = "El fin"
+text = "the_end"
 
 [node name="Label2" type="Label" parent="EndGamePanel/Control/GameEndButton/Tooltip"]
 layout_mode = 0
@@ -848,7 +848,7 @@ offset_top = 81.0
 offset_right = 241.0
 offset_bottom = 131.0
 theme_override_colors/font_color = Color(0.564706, 0.407843, 0.0980392, 1)
-text = "Consigue estos recursos para completar el juego"
+text = "the_end_description"
 autowrap_mode = 2
 
 [node name="Control" type="MarginContainer" parent="EndGamePanel/Control"]

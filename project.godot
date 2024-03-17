@@ -36,7 +36,7 @@ click={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://localization/localization.es.translation", "res://localization/localization.en.translation", "res://localization/localization.fr.translation")
+locale/translations=PackedStringArray("res://localization/localization.es.translation", "res://localization/localization.en.translation", "res://localization/localization.fr.translation", "res://localization/localization.cat.translation")
 
 [rendering]
 

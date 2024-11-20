@@ -200,9 +200,9 @@ grow_vertical = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(0.933333, 0.92549, 0.705882, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_gbd2w")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gbd2w")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_gbd2w")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gbd2w")
 text = "language"
 script = ExtResource("4_ns5ce")
 
@@ -274,9 +274,9 @@ pivot_offset = Vector2(160.2, 193.8)
 tooltip_text = "Play"
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_dsvfr")
 theme_override_styles/hover = SubResource("StyleBoxTexture_dsvfr")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_dsvfr")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dsvfr")
 script = ExtResource("1_x4mu5")
 scene = ExtResource("2_6fnf0")
 

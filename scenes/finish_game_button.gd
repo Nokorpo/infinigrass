@@ -18,12 +18,12 @@ func on_resource_changed() -> void:
 		
 	if ResourcesManager.money >= 300 and ResourcesManager.barley >= 200 and ResourcesManager.beer >= 100:
 		disabled = false
-		for icon in resources_icons:
-			icon.modulate = Color(1, 1, 1, 1)
+		for this_icon: Node in resources_icons:
+			this_icon.modulate = Color(1, 1, 1, 1)
 	else:
 		disabled = true
-		for icon in resources_icons:
-			icon.modulate = Color(0, 0, 0, .6)
+		for this_icon: Node in resources_icons:
+			this_icon.modulate = Color(0, 0, 0, .6)
 
 func _on_pressed() -> void:
 	var curtain = %Curtain
@@ -35,13 +35,13 @@ func _on_pressed() -> void:
 		await curtain.change_scene_now
 	get_tree().change_scene_to_file(game_end_scene)
 
-func _on_mouse_entered():
+func _on_mouse_entered() -> void:
 	if tooltip_tween != null:
 		tooltip_tween.kill()
 	tooltip_tween = create_tween().set_trans(Tween.TRANS_SINE)
 	tooltip_tween.tween_property($Tooltip, "modulate", Color("ffffff", 1), .2)
 
-func _on_mouse_exited():
+func _on_mouse_exited() -> void:
 	if tooltip_tween != null:
 		tooltip_tween.kill()
 	tooltip_tween = create_tween().set_trans(Tween.TRANS_SINE)

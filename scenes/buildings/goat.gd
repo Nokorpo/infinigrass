@@ -14,7 +14,7 @@ var shader_script
 func _ready() -> void:
 	$Timer.start(time_until_completion)
 
-func _process(delta):
+func _process(_delta: float) -> void:
 	if !is_instantiated:
 		var mouse_position = get_viewport().get_mouse_position()
 		position = mouse_position
@@ -22,7 +22,7 @@ func _process(delta):
 		if !can_be_placed():
 			modulate = Color("ffa092")
 
-func _input(event):
+func _input(_event: InputEvent) -> void:
 	if !is_instantiated and Input.is_action_just_released("click"):
 		if can_be_placed():
 			$Timer.start()

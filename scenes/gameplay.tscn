@@ -40,7 +40,7 @@
 [ext_resource type="AudioStream" uid="uid://82y124y5uguw" path="res://assets/sound/cheap_pruner/cheap_pruner4.ogg" id="27_hka2l"]
 [ext_resource type="AudioStream" uid="uid://ddaryhpy13fvg" path="res://assets/music/bg03.ogg" id="28_iuw2e"]
 [ext_resource type="AudioStream" uid="uid://d3qkiowjj2muy" path="res://assets/sound/cheap_pruner/cheap_pruner5.ogg" id="28_kdgok"]
-[ext_resource type="Script" path="res://scenes/BackgroundMusic.gd" id="30_q8q8d"]
+[ext_resource type="Script" path="res://scenes/background_music.gd" id="30_q8q8d"]
 
 [sub_resource type="Theme" id="Theme_l8mw1"]
 Label/font_sizes/font_size = 24
@@ -116,31 +116,22 @@ texture = ExtResource("25_uc3bm")
 random_pitch = 1.2
 streams_count = 5
 stream_0/stream = ExtResource("24_itasg")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("25_xycso")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("26_wyylj")
-stream_2/weight = 1.0
 stream_3/stream = ExtResource("27_hka2l")
-stream_3/weight = 1.0
 stream_4/stream = ExtResource("28_kdgok")
-stream_4/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ge6mb"]
 random_pitch = 1.4
 streams_count = 1
 stream_0/stream = ExtResource("24_wu1f0")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_afbeo"]
 playback_mode = 2
 streams_count = 3
 stream_0/stream = ExtResource("26_bwwci")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("27_5r2jj")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("28_iuw2e")
-stream_2/weight = 1.0
 
 [node name="Gameplay" type="Node2D"]
 
@@ -806,11 +797,11 @@ layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_7uaaf")
-theme_override_styles/normal = SubResource("StyleBoxTexture_36xo1")
+theme_override_styles/focus = SubResource("StyleBoxTexture_36xo1")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_aw5bn")
 theme_override_styles/hover = SubResource("StyleBoxTexture_36xo1")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_36xo1")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_aw5bn")
-theme_override_styles/focus = SubResource("StyleBoxTexture_36xo1")
+theme_override_styles/normal = SubResource("StyleBoxTexture_36xo1")
 icon_alignment = 1
 script = ExtResource("25_w7ibv")
 

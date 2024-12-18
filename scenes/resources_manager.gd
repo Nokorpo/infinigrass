@@ -8,6 +8,7 @@ signal money_changed
 signal barley_changed
 signal beer_changed
 ## Called if player tries to buy something, but doesn't have enough of that resource
+@warning_ignore("unused_signal")
 signal not_enough(resource: GameResourceType)
 
 var money: int = 0
